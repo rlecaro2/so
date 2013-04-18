@@ -1,0 +1,2 @@
+class musica(Proceso):
+  pass

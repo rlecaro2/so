@@ -1,0 +1,2 @@
+class juego(Proceso):
+  pass
