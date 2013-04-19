@@ -7,5 +7,23 @@ class fileManager:
     target.close()
 
   @staticmethod
-  def registerCall(number, timestamp, incoming):
-    pass
+  def registrarLlamada(content):
+    _appendToFile("llamadas.txt", content)
+
+  @staticmethod
+  def leerInput(filename): #devuelve stack de procesos
+    target = open(filename,"r")
+    line = target.readline()
+    stack = []
+    while (line != ''):
+      attr = line.split(',')
+      stack.append(attr)
+
+    return stack
+
+
+
+
+      
+
+
