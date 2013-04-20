@@ -1,11 +1,14 @@
 import multiprocessing
+import dispatcher as dp
+import scheduler as sch
 from proceso import Proceso
 
 class iOS:
   
   def __init__(self):
     self.historial
-
+    self.dispatcher= dp.Dispatcher()
+    #self.schedululer= sch.Scheduler
   def startProcess(info):
     pass
 
