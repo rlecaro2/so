@@ -4,7 +4,7 @@ from proceso import Proceso
 class iOS:
   
   def __init__(self):
-    pass
+    self.historial
 
   def startProcess(info):
     pass
