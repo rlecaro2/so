@@ -1,4 +1,4 @@
-impor multiprocessing
+import multiprocessing
 from proceso import Proceso
 
 class iOS:
@@ -20,3 +20,5 @@ class iOS:
     pass
   def verHistorial():
     pass
+  def correr_juego():
+      pass
