@@ -6,11 +6,17 @@ from proceso import Proceso
 class iOS:
   
   def __init__(self):
+  
+    ## Cola ready de los procesos
+    self.ready=[]
     self.historial
     self.dispatcher= dp.Dispatcher()
+  
     #self.schedululer= sch.Scheduler
   def startProcess(info):
     pass
+      ## Esta secuencia de bloque corresponde a cuando se hace una interrupcíon de proceso
+      
 
     
   def leerInput():
@@ -25,3 +31,11 @@ class iOS:
     pass
   def correr_juego():
       pass
+
+  ## Método que ordena los método en ready, de acuerdo con su prioridad y fecha llegada a la cola
+  ## Fecha llegada == Fecha ejecucion 
+  
+  def OrdenarColaReady(self):
+      pass
+
+     

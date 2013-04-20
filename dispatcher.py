@@ -29,8 +29,10 @@ class Dispatcher:
 
     #Cuando llega un proceso de menor prioridad quita el proceso en ejecuci?n, para ello respalda de la informo de este proceso para cuando 
     #tenga q volver a ser ejecutado y lo retorno para que entre en la cola ready
-    def Interumpir_proceso():
-        pass
+    def Interumpir_proceso(self, proceso):
+        self.temporal=self.running
+        self.running=proceso
+        return self.temporal
 
     #cuando termina de ejecutarse un proceso este metodo vacia el running
     def Terminar_proceso(self): 
