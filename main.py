@@ -1,11 +1,25 @@
 from iOS import iOS
+
 if __name__ == "__main__":
   command = raw_input("> ")
   while(command != "exit"):
-    if(command == "llamar"):
-      numero = input("Ingresa el numero: ")
-    elif(command == "mensaje"):
-      print 4
+    if(command.startswith("llamar")):
+      try:
+        numero = command.split(" ")[1]
+        duracion = command.split(" ")[2]
+        #crear proceso y llamar
+      except:
+        print "Uso: \"> llamar numero duracion(en segundos)\""
+
+    elif(command.startswith("mensaje")):
+      try:
+        numero = numero = command.split(" ")[1]
+        msj = command.split(" ")[2]
+        #crear proceso y dejar mandando el msj
+      except:
+        print "Uso: \"> mensaje numero mensaje_a_enviar\""
+
+
     command = raw_input("> ")
 
   
