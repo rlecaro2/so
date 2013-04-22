@@ -1,3 +1,0 @@
-class llamadaEntrante(Proceso):
-  pass
-           

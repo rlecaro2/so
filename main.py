@@ -1,4 +1,4 @@
-from iOS import iOS
+import iOS
 
 if __name__ == "__main__":
   command = raw_input("> ")

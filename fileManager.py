@@ -7,7 +7,8 @@ class fileManager:
     target.close()
 
   @staticmethod
-  def registrarLlamada(content):
+  def registrarLlamada(llamada):
+    content = str(llamada.fecha) + " " + str(llamada.t_inicio) + str() 
     _appendToFile("llamadas.txt", content)
 
   @staticmethod
@@ -18,7 +19,7 @@ class fileManager:
     while (line != ''):
       attr = line.split(',')
       stack.append(attr)
-
+      
     return stack
 
 
