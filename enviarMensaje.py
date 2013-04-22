@@ -1,11 +1,11 @@
-from Proceso import Proceso
+from proceso import Proceso
 
 class enviarMensaje(Proceso):
     def __init__(self, args):        
-        super(enviarMensaje, self).__init__(args)
+        Proceso.__init__(self,args)
 
-        self.numero = args[4].split(';')[0]
-        self.mensaje = args[4].split(';')[1]
+        self.numero = args[4]
+        self.mensaje = args[5]
         self.duracion = len(self.mensaje)*20
         #variables especificas de mensaje
         

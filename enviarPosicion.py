@@ -2,5 +2,5 @@ from Proceso import Proceso
 
 class enviarPosicion(Proceso):
     def __init__(self, args):        
-        super(enviarPosicion, self).__init__(args)
+        Proceso.__init__(self,args)
         self.duracion = 2

@@ -17,7 +17,7 @@ class fileManager:
     line = target.readline()
     stack = []
     while (line != ''):
-      attr = line.split(',')
+      attr = line.split(';')
       stack.append(attr)
       
     return stack
