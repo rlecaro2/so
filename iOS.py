@@ -15,7 +15,7 @@ class iOS:
     #self.schedululer= sch.Scheduler
   def startProcess(info):
     pass
-      ## Esta secuencia de bloque corresponde a cuando se hace una interrupcíon de proceso
+      ## Esta secuencia de bloque corresponde a cuando se hace una interrupc?on de proceso
       
 
     
@@ -32,10 +32,24 @@ class iOS:
   def correr_juego():
       pass
 
-  ## Método que ordena los método en ready, de acuerdo con su prioridad y fecha llegada a la cola
+  ## M?todo que inserta de forma ordena los m?todo en ready, de acuerdo con su prioridad y fecha llegada a la cola
   ## Fecha llegada == Fecha ejecucion 
   
-  def OrdenarColaReady(self):
-      pass
+  def Insertar_en_ColaReady(self, process):
+
+      ## Esto es solo en caso que deba ir al final de la fila, para no tener que recorrerla entera
+      if(process.get_prioridad()<ready[len(self.ready)-1].get_prioridad()):
+          ready.insert(len(self.ready)-1,process)
+          
+      for i in range (1, len(self.ready)-2):
+          
+          if(process.get_prioridad()<ready[i].get_prioridad()):
+
+              ready.insert(i,process)
+                           
+           
+
+      
+      
 
      
