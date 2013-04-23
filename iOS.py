@@ -67,7 +67,7 @@ class iOS:
   def top(self):
         p = self.dispatcher.running
         left = p.duracion - p.t_running
-        print "process - time left \n"
+        print "process - time left \n" 
         print p.nombre + " - " + str(left) + "\n"
 
         for proc in ready:
