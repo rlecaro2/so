@@ -4,8 +4,7 @@ import scheduler as sch
 import fileManager as fm
 from proceso import Proceso
 
-class iOS:
-  
+class iOS:  
 
   def __init__(self):  
     ## Cola ready de los procesos
@@ -13,7 +12,7 @@ class iOS:
     self.historial
     self.scheduler= sch.Scheduler()
     self.dispatcher = dp.Dispatcher()
-    #self.schedululer = sch.Scheduler
+
 
   def startProcess(self, filename):
      
@@ -83,46 +82,6 @@ class iOS:
         for proc in ready:
             left = proc.duracion - proc.t_running
             print proc.nombre + " - " + str(left) + "\n"
-
-<<<<<<< HEAD
-    
-  def leerInput(self, filename):
-    stack = fm.leerInput(filename)
-    self.scheduler = sch.Scheduler(stack)
-
-  def hacerLlamada():
-    pass
-  def enviarMensaje():
-    pass
-  def verContactos():
-    pass
-  def verHistorial():
-    pass
-  def correr_juego():
-      pass
-
-  ## La cola ready esta ordena por prioridad
-  ## M?todo que inserta de forma ordena los m?todo en ready, de acuerdo con su prioridad y fecha llegada a la cola
-  ## Fecha llegada == Fecha ejecucion 
-  def Insertar_en_ColaReady(self, process):
-
-      if(len(ready) == 0):
-          ready.append(process)
-      
-      else:
-      ## Esto es solo en caso que deba ir al final de la fila, para no tener que recorrerla entera
-          if(process.prioridad()<ready[len(self.ready)-1].prioridad()):
-             ready.insert(len(self.ready)-1,process)
-          
-          for i in range (1, len(self.ready)-2):
-          
-             if(process.prioridad()<ready[i].prioridad()):
-
-                 ready.insert(i,process)
-=======
->>>>>>> f93d303a95e48862a900ecea7170d8b24da73fd6
-                           
-           
 
       
       
