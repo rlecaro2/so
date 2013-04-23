@@ -14,6 +14,7 @@ class Dispatcher:
         self.estadorunning=True;        
 
     #Actualiza los datos del proceso en ejecuci?n
+    ## si correponde que el proceso debe terminar, lo termina 
     def Ejecucion_proceso(self):
 
         if(self.running.trunning()!=self.running.duracion()):

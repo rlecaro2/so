@@ -17,7 +17,7 @@ class Scheduler:
        #Cola de procesos del tipo lista
         self.procesos = []
 
-    #Metodo que recibe la lista de procesos leida del archivo y los pone a un proceso en la cola de procesos de acuerdo a la fecha de ejecuci?n 
+    #Metodo que usar leerInput este le entrega la lista de procesos, lo cuales los en la cola de procesos de acuerdo a la fecha de ejecuci?n 
     def AgendarProcesos(self, filename):
         
         tempprocesos = self.leerInput(filename)

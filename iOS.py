@@ -10,13 +10,39 @@ class iOS:
     ## Cola ready de los procesos
     self.ready=[]
     self.historial
-
+    self.scheduler= sch.Scheduler()
     self.dispatcher = dp.Dispatcher()
     #self.schedululer = sch.Scheduler
 
-  def startProcess(info):
-    pass
+  def startProcess(self, filename):
+     
+      ## Al hacer esto el scheduler lee el input y agenda los procesos ordenadamente
+      self.scheduler.AgendarProcesos(filename)
+      fecha=0 
+      while (True):
+         
+          tempready = self.scheduler.Procesos_a_ejecutar(fecha)
+          ## Insertamos en la cola ready los procesos que ya se gatillaron
+          for p in tempready:
+              self.Insertar_en_ColaReady(p)
+        
+          if (len(self.ready)>0):
 
+              ## Si no hay nada en runnin ingresamos un proceso a este
+              if(self.dispatcher.estadorunning == False):
+                  self.dispatcher.Proceso_a_Running(self.ready[0])
+              else:
+                  ## Recordar que cero es la mayor prioridad por lo tanto mayor número de prioridad indica prioridad mas baja
+                  if(self.dispatcher.PrioridadProceso()>self.ready[0]()):
+                      tempprocess = self.dispatcher.Interumpir_proceso(self.ready[0])
+                      self.Insertar_en_ColaReady(tempprocess)
+
+           self.dispatcher.Ejecucion_proceso()                          
+          
+          
+          fecha=fecha +1
+
+               
       ## Esta secuencia de bloque corresponde a cuando se hace una interrupc?on de proceso
       ## Esta secuencia de bloque corresponde a cuando se hace una interrupcion de proceso
 
@@ -38,7 +64,7 @@ class iOS:
   def correr_juego():
       pass
 
-
+  ## La cola ready esta ordena por prioridad
   ## M?todo que inserta de forma ordena los m?todo en ready, de acuerdo con su prioridad y fecha llegada a la cola
   ## Fecha llegada == Fecha ejecucion 
   def Insertar_en_ColaReady(self, process):
@@ -48,12 +74,12 @@ class iOS:
       
       else:
       ## Esto es solo en caso que deba ir al final de la fila, para no tener que recorrerla entera
-          if(process.get_prioridad()<ready[len(self.ready)-1].get_prioridad()):
+          if(process.prioridad()<ready[len(self.ready)-1].prioridad()):
              ready.insert(len(self.ready)-1,process)
           
           for i in range (1, len(self.ready)-2):
           
-             if(process.get_prioridad()<ready[i].get_prioridad()):
+             if(process.prioridad()<ready[i].prioridad()):
 
                  ready.insert(i,process)
                            
