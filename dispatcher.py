@@ -1,14 +1,12 @@
-import proceso as p
-class Dispatcher:
-  
-     
+import Proceso as p
+class Dispatcher:     
 
     #Constructor
     def __init__(self):
-        self.estadorunning= False
+        self.estadorunning = False
     
         #Se debe respaldar el proceso en ejecuci?n, se empieza con un proceso en defecto
-        self.running=p.Proceso("nn",6,10,0)
+        self.running = p.Proceso("nn",6,10,0)
 
    #Pone el proceso en running
     def Proceso_a_Running(self,proceso):
@@ -30,7 +28,7 @@ class Dispatcher:
     #Cuando llega un proceso de menor prioridad quita el proceso en ejecuci?n, para ello respalda de la informo de este proceso para cuando 
     #tenga q volver a ser ejecutado y lo retorno para que entre en la cola ready
     def Interumpir_proceso(self, proceso):
-        self.temporal=self.running
+        self.temporal = self.running
         self.running=proceso
         return self.temporal
 

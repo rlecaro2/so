@@ -1,4 +1,5 @@
 import proceso
+import fileManager
 class Scheduler:
    
     def __init__(self,infoprocess):
