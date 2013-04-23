@@ -18,23 +18,36 @@ class Scheduler:
         self.procesos = []
 
     #Metodo que recibe la lista de procesos leida del archivo y los pone a un proceso en la cola de procesos de acuerdo a la fecha de ejecuci?n 
-    def AgendarProcesos(Listaproceso):
+    def AgendarProcesos(self, filename):
         
-        
-        for p in listaproceso:
+        tempprocesos = self.leerInput(filename)
+
+        for p in tempprocesos:
 
             if(len(procesos) == 0):
                 procesos.append(p)
             else:
                 ## otro for para recorrer procesos y comparar fechas
-                kjkjk
+                for i in range(0, len(procesos)):
+
+                    if(p.fecha<procesos[i]):
+                        procesos.insert(i,p)
+
+                    elif(i == len(procesos)):                        
+                        procesos.append(p)
 
 
 
     #Revisa la lista de procesos y devuelve aquellos que se deben ejecutar en la fech recibida
-    def Procesos_a_ejecutar(fecha):
-        pass
-
+    def Procesos_a_ejecutar(date):
+        listaejecucion= []
+        for p in procesos:
+            if(p.fecha == date):
+                listaejecucion.append(p)
+        
+        return listaejecucion
+        
+    # Metodo que retorna la lista de precos instanciada
     def leerInput(self, filename):
         stack = fm.leerInput(filename)
         listaProcesos = []
