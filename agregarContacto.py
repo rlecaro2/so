@@ -10,4 +10,13 @@ class agregarContacto(Proceso):
         #variables especificas de llamadas
 
     def imprimir(self):
-        return self.fecha + " - Contacto agregado. Nombre: " + self.nombreContacto + ", numero: " + self.numeroContacto +"."
+        return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Contacto agregado. Nombre: " + self.nombreContacto + ", numero: " + self.numeroContacto +"."
+
+    def content(self):
+    	return self.nombreContacto + ";" + self.numeroContacto
+
+    def guardar_en_memoria(self):
+        fileManager.appendToFile("Agenda_Telefonica.txt", self.content())
+
+    def finish(self):
+        self.guardar_en_memoria()

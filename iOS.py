@@ -6,6 +6,7 @@ from proceso import Proceso
 
 class iOS:
   
+
   def __init__(self):  
     ## Cola ready de los procesos
     self.ready=[]
@@ -37,17 +38,53 @@ class iOS:
                       tempprocess = self.dispatcher.Interumpir_proceso(self.ready[0])
                       self.Insertar_en_ColaReady(tempprocess)
 
-           self.dispatcher.Ejecucion_proceso()                          
-          
-          
+          self.dispatcher.Ejecucion_proceso()                                             
           fecha=fecha +1
 
                
       ## Esta secuencia de bloque corresponde a cuando se hace una interrupc?on de proceso
       ## Esta secuencia de bloque corresponde a cuando se hace una interrupcion de proceso
 
-      
+    def hacerLlamada():
+        pass
+    def enviarMensaje():
+        pass
+    def verContactos():
+        pass
+    def verHistorial():
+        pass
+    def correr_juego():
+        pass
 
+
+    ## M?todo que inserta de forma ordena los m?todo en ready, de acuerdo con su prioridad y fecha llegada a la cola
+    ## Fecha llegada == Fecha ejecucion 
+    def Insertar_en_ColaReady(self, process):
+
+        if(len(ready) == 0):
+            ready.append(process)
+
+        else:
+            ## Esto es solo en caso que deba ir al final de la fila, para no tener que recorrerla entera
+            if(process.get_prioridad()<ready[len(self.ready)-1].get_prioridad()):
+                ready.insert(len(self.ready)-1,process)
+
+                for i in range (1, len(self.ready)-2):
+                    if(process.get_prioridad()<ready[i].get_prioridad()):
+                        ready.insert(i,process)
+
+
+    def top(self):
+        p = self.dispatcher.running
+        left = p.duracion - p.t_running
+        print "process - time left \n"
+        print p.nombre + " - " + str(left) + "\n"
+
+        for proc in ready:
+            left = proc.duracion - proc.t_running
+            print proc.nombre + " - " + str(left) + "\n"
+
+<<<<<<< HEAD
     
   def leerInput(self, filename):
     stack = fm.leerInput(filename)
@@ -82,6 +119,8 @@ class iOS:
              if(process.prioridad()<ready[i].prioridad()):
 
                  ready.insert(i,process)
+=======
+>>>>>>> f93d303a95e48862a900ecea7170d8b24da73fd6
                            
            
 

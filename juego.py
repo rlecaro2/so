@@ -6,4 +6,5 @@ class juego(Proceso):
         self.duracion = int(args[4])
         #variables especificas de juego    
     def imprimir(self):
-            return self.fecha + " - Juego durante " + str(self.duracion) + " segundos."
+            return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Juego durante " + str(self.duracion) + " segundos."
+

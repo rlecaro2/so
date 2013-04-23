@@ -1,3 +1,5 @@
+import fileManager
+from time import localtime, strftime
 
 class Proceso:
   
@@ -21,10 +23,10 @@ class Proceso:
     self.running = False
 
   def add1_to_trunning(self):
+    self.t_running=t_running+1
 
-       self.t_running=t_running+1
-
-
+  def finish(self):
+    pass
         
      
     
