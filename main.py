@@ -32,10 +32,8 @@ if __name__ == "__main__":
     
     console= consola()
     # Esto es para q el proceso de consola corra en paralelo
-    archivo= input("Ingrese nombre de archivo: ")
+    archivo= raw_input("Ingrese nombre de archivo: ")
     thread.start_new_thread(console.Start(),())
     SO= iOS()
     SO.startProcess(archivo)
-        
-        # FALTA
-        #4.	Procesos ingresados por consola se le entregan al scheduler con fecha de ejecuci?n igual a la actual 
+

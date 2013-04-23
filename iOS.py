@@ -22,6 +22,8 @@ class iOS:
       fecha=0 
       while (True):
          
+         #4.	Procesos ingresados por consola se le entregan al scheduler con fecha de ejecuci?n igual a la actual 
+
           tempready = self.scheduler.Procesos_a_ejecutar(fecha)
           ## Insertamos en la cola ready los procesos que ya se gatillaron
           for p in tempready:
@@ -33,7 +35,7 @@ class iOS:
               if(self.dispatcher.estadorunning == False):
                   self.dispatcher.Proceso_a_Running(self.ready[0])
               else:
-                  ## Recordar que cero es la mayor prioridad por lo tanto mayor número de prioridad indica prioridad mas baja
+                  ## Recordar que cero es la mayor prioridad por lo tanto mayor numero de prioridad indica prioridad mas baja
                   if(self.dispatcher.PrioridadProceso()>self.ready[0]()):
                       tempprocess = self.dispatcher.Interumpir_proceso(self.ready[0])
                       self.Insertar_en_ColaReady(tempprocess)
@@ -76,7 +78,7 @@ class iOS:
     
   def leerInput(self, filename):
         stack = fm.leerInput(filename)
-     self.scheduler = sch.Scheduler(stack)
+        self.scheduler = sch.Scheduler(stack)
 
   def hacerLlamada():
       pass

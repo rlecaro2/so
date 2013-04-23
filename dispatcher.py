@@ -1,4 +1,4 @@
-import Proceso as p
+from proceso import Proceso 
 class Dispatcher:     
 
     #Constructor

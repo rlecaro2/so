@@ -1,4 +1,4 @@
-import Proceso
+from proceso import Proceso
 
 class consola():
     def __init__(self):
