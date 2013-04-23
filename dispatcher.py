@@ -16,14 +16,14 @@ class Dispatcher:
     #Actualiza los datos del proceso en ejecuci?n
     def Ejecucion_proceso(self):
 
-        if(self.running.get_trunning()!=self.running.get_duracion()):
+        if(self.running.trunning()!=self.running.duracion()):
             self.running.add1_to_trunning()
         else:
             self.Terminar_proceso()
 
     #Entrega los datos del proceso que estan en running
     def PrioridadProceso(self):
-        return self.running.get_prioridad()
+        return self.running.prioridad()
 
     #Cuando llega un proceso de menor prioridad quita el proceso en ejecuci?n, para ello respalda de la informo de este proceso para cuando 
     #tenga q volver a ser ejecutado y lo retorno para que entre en la cola ready

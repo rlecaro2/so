@@ -43,15 +43,19 @@ class iOS:
   ## Fecha llegada == Fecha ejecucion 
   def Insertar_en_ColaReady(self, process):
 
+      if(len(ready) == 0):
+          ready.append(process)
+      
+      else:
       ## Esto es solo en caso que deba ir al final de la fila, para no tener que recorrerla entera
-      if(process.get_prioridad()<ready[len(self.ready)-1].get_prioridad()):
-          ready.insert(len(self.ready)-1,process)
+          if(process.get_prioridad()<ready[len(self.ready)-1].get_prioridad()):
+             ready.insert(len(self.ready)-1,process)
           
-      for i in range (1, len(self.ready)-2):
+          for i in range (1, len(self.ready)-2):
           
-          if(process.get_prioridad()<ready[i].get_prioridad()):
+             if(process.get_prioridad()<ready[i].get_prioridad()):
 
-              ready.insert(i,process)
+                 ready.insert(i,process)
                            
            
 
