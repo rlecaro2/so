@@ -1,4 +1,4 @@
-from Proceso import Proceso
+from proceso import Proceso
 
 class recibirMensaje(Proceso):
     def __init__(self, args):        
@@ -8,7 +8,9 @@ class recibirMensaje(Proceso):
         self.mensaje = args[5]
         self.duracion = len(self.mensaje)*20
         #variables especificas de mensaje
-        
+     
+    def imprimir(self):
+        return self.fecha + " - Mensaje recibido del numero: " + self.numero + ". Contenido: \"" + self.mensaje + "\"."     
     #Metodo que guarda el mensaje en la memoria del celular (archivo de texto)
     def guardar_en_memoria():
         pass

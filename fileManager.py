@@ -16,9 +16,11 @@ class fileManager:
     target = open(filename,"r")
     line = target.readline()
     stack = []
-    while (line != ''):
+    while len(line.strip()) > 0:
+      line = line.strip("\n")
       attr = line.split(';')
       stack.append(attr)
+      line = target.readline()
       
     return stack
 
@@ -26,5 +28,4 @@ class fileManager:
 
 
       
-
 

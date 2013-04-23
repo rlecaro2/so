@@ -8,7 +8,7 @@ class Proceso:
     self.nombre = args[0]
     self.fecha = args[1]
     self.tipo = args[2]
-    self.prioridad = args[3]
+    self.prioridad = int(args[3])
     #variables comunes a todo proceso
 
     self.t_inicio = 0
