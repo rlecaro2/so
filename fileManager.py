@@ -6,7 +6,7 @@ class fileManager:
     target.write(content)
     target.close()
 
-   @staticmethod
+  @staticmethod
   def leerInput(filename): #devuelve stack de procesos
     target = open(filename,"r")
     line = target.readline()
@@ -19,7 +19,7 @@ class fileManager:
       
     return stack
 
- @staticmethod
+  @staticmethod
   def registrarLlamada(llamada):
     content = str(llamada.fecha) + " " + str(llamada.t_inicio) + str() 
     _appendToFile("llamadas.txt", content)

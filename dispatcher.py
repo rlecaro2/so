@@ -1,4 +1,4 @@
-import Proceso as p
+import proceso as p
 class Dispatcher:     
 
     #Constructor
@@ -6,7 +6,7 @@ class Dispatcher:
         self.estadorunning = False
     
         #Se debe respaldar el proceso en ejecuci?n, se empieza con un proceso en defecto
-        self.running = p.Proceso("nn",6,10,0)
+        self.running = p.Proceso(["nn",6,10,0])
 
    #Pone el proceso en running
     def Proceso_a_Running(self,proceso):
