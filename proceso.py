@@ -20,6 +20,11 @@ class Proceso:
     #Si el proceso no esta en ejecucion su running es False
     self.running = False
 
+  def add1_to_trunning(self):
+
+       self.t_running=t_running+1
+
+
         
      
     
