@@ -14,4 +14,4 @@ class enviarMensaje(Proceso):
             return self.t_inicio + " - Mensaje enviado a: " + self.numero +  "\n" + self.mensaje + "\n"  
     #Metodo que guarda el mensaje en la memoria del celular (archivo de texto)
     def guardar_en_memoria():
-        fileManager._appendToFile("Historial_Mensajes", imprimir()):
+        fileManager.appendToFile("Historial_Mensajes", imprimir()):
