@@ -25,6 +25,12 @@ class fileManager:
     return stack
 
 
+  @staticmethod
+  def almacenarContacto(nombre,numero):
+    content = nombre + ";" + numero + "\n"
+    _appendToFile("contactos.txt",content)
+
+
 
 
       
