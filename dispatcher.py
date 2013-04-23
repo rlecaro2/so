@@ -35,4 +35,5 @@ class Dispatcher:
     #cuando termina de ejecutarse un proceso este metodo vacia el running
     def Terminar_proceso(self): 
         self.estadorunning=False
+        self.finish()
         
