@@ -16,5 +16,5 @@ class agregarContacto(Proceso):
     def content(self):
     	return self.nombreContacto + ";" + self.numeroContacto
 
-    def guardar_en_memoria():
-        fileManager.appendToFile("Agenda_Telefonica", content()):
+    def guardar_en_memoria(self):
+        fileManager.appendToFile("Agenda_Telefonica.txt", content()):
