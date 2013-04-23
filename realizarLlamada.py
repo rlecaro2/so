@@ -11,5 +11,9 @@ class realizarLlamada(Proceso):
         #variables especificas de llamadas
     def imprimir(self):
             return self.t_inicio + " - Llamada realizada a: " + self.numero + ". Duracion: " + str(self.duracion) + " segundos."
-    def guardar_en_memoria():
-        fileManager.appendToFile("Historial_Llamadas", imprimir()):
+    
+    def guardar_en_memoria(self):
+        fileManager.appendToFile("Historial_Llamadas.txt", imprimir())
+        
+    def finish(self):
+        guardar_en_memoria()
