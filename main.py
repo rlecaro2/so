@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 from iOS import iOS 
 from consola import consola
 import thread 
