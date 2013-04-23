@@ -6,4 +6,4 @@ class enviarPosicion(Proceso):
         self.duracion = 2
 
     def imprimir(self):
-        return self.fecha + " - Posicion enviada."
+        return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Posicion enviada."

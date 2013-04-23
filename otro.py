@@ -6,4 +6,4 @@ class otro(Proceso):
         self.duracion = int(args[4])
     
     def imprimir(self):
-        return self.fecha + " - Cualquier proceso durante " + str(self.duracion) + " segundos."
+        return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Cualquier proceso durante " + str(self.duracion) + " segundos."

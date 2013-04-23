@@ -1,5 +1,5 @@
 from proceso import Proceso
-import fileManager
+
 
 class enviarMensaje(Proceso):
     def __init__(self, args):        
@@ -11,10 +11,11 @@ class enviarMensaje(Proceso):
         #variables especificas de mensaje
     
     def imprimir(self):
-            return self.t_inicio + " - Mensaje enviado a: " + self.numero +  "\n" + self.mensaje + "\n"  
+            return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Mensaje enviado a: " + self.numero +  "\n" + self.mensaje + "\n"  
     #Metodo que guarda el mensaje en la memoria del celular (archivo de texto)
     def guardar_en_memoria(self):
-        fileManager.appendToFile("Historial_Mensajes.txt", imprimir())
+        fileManager.appendToFile("Historial_Mensajes.txt", self.imprimir())
 
     def finish(self):
-        guardar_en_memoria()
+        self.guardar_en_memoria()
+

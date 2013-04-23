@@ -6,4 +6,4 @@ class verPosicion(Proceso):
         self.duracion = int(args[4])
 
     def imprimir(self):
-            return self.fecha + " - Posicion revisada durante " + str(self.duracion) + " segundos."
+            return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Posicion revisada durante " + str(self.duracion) + " segundos."

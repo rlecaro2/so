@@ -6,4 +6,4 @@ class musica(Proceso):
         self.duracion = int(args[4])
         #variables especificas de musica
     def imprimir(self):
-            return self.fecha + " - Musica durante " + str(self.duracion) + " segundos."
+            return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Musica durante " + str(self.duracion) + " segundos."

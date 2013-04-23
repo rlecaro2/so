@@ -1,3 +1,5 @@
+import fileManager
+from time import localtime, strftime
 
 class Proceso:
   
