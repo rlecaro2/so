@@ -1,4 +1,5 @@
 from proceso import Proceso
+import fileManager
 
 class recibirLlamada(Proceso):
     def __init__(self, args):        
@@ -9,4 +10,6 @@ class recibirLlamada(Proceso):
 
         #variables especificas de llamadas
     def imprimir(self):
-        return self.fecha + " - Llamada recibida del numero: " + self.numero + ". Duracion: " + str(self.duracion) + " segundos."
+        return self.fecha + " - Llamada recibida de: " + self.numero + ". Duracion: " + str(self.duracion) + " segundos."
+    def guardar_en_memoria():
+        fileManager.appendToFile("Historial_Llamadas", imprimir()):

@@ -1,4 +1,5 @@
 from proceso import Proceso
+import fileManager
 
 class agregarContacto(Proceso):
     def __init__(self, args):        
@@ -10,4 +11,6 @@ class agregarContacto(Proceso):
         #variables especificas de llamadas
 
     def imprimir(self):
-        return self.fecha + " - Contacto agregado. Nombre: " + self.nombreContacto + ", numero: " + self.numeroContacto +"."
+        return " Nombre: " + self.nombreContacto + ", numero: " + self.numeroContacto +"."
+    def guardar_en_memoria():
+        fileManager.appendToFile("Agenda_Telefonica", imprimir()):
