@@ -55,7 +55,7 @@ class consola():
         llamada = "llamada"+";"+str(self.sharedTimer.value)+";"+str(1)+";"+str(0)+";"+str(numero)+";"+str(duracion)
         self.procesoNuevo.value = llamada
     def crearMensaje(self,numero,mensaje):
-        mensaje = enviarMensaje(["mensaje",self.sharedTimer,3,2,numero,mensaje])
-        self.arr.put(mensaje)
+        mensaje = "mensaje" + ";" + str(self.sharedTimer.value)+";"+str(3)+";"+str(2)+";"+str(numero)+";"+str(mensaje)
+        self.procesoNuevo.value = mensaje
     def cargarArchivo(self,filename):
         self.instruction.value = "file;" + filename
