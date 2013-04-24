@@ -9,3 +9,6 @@ class otro(Proceso):
     
     def imprimir(self):
         return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Cualquier proceso durante " + str(self.duracion) + " segundos."
+
+    def finish(self):
+        fileManager.appendToFile("Log.txt", self.imprimir())

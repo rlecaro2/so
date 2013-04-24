@@ -9,3 +9,6 @@ class enviarPosicion(Proceso):
 
     def imprimir(self):
         return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Posicion enviada."
+
+    def finish(self):
+        fileManager.appendToFile("Log.txt", self.imprimir())
