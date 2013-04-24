@@ -3,6 +3,8 @@ from consola import consola
 from multiprocessing import Manager, Process, Value
 
 if __name__ == "__main__":
+
+
   with Manager() as Manager:
     num = Manager.Value('i', 0)
     procesoNuevo = Manager.Value(unicode, '')
