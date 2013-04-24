@@ -12,7 +12,8 @@ class Proceso:
     self.tipo = args[2]
     self.prioridad = int(args[3])
     #variables comunes a todo proceso
-
+    self.duracion = 0
+    
     self.t_inicio = 0
     self.t_fin = 0
     #Este variable nos dice cuanto tiempo ha estado en running (Sirve para cuando hay expropiacion)
