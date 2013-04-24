@@ -2,6 +2,12 @@
 class fileManager:
 
   @staticmethod
+  def clearTxt():
+    open('Historial_Llamadas.txt', 'w').close()
+    open('Historial_Mensajes.txt', 'w').close()
+    open('Log.txt', 'w').close()
+
+  @staticmethod
   def appendToFile(filename, content):
     target = open(filename, "a")
     target.write(content)
