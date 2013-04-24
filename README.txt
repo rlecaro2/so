@@ -1,10 +1,10 @@
-llamar (numero) (duracion)
-mensaje (numero) (texto)
-exit
-archivo (nombrearchivo)
-top
-ver llamadas
-ver mensajes
-ver contactos
-contacto (nombre) (numero)
+README
 
+comandos disponibles
+
+llamar <numero> <duracion>
+mensaje <numero> <mensaje>
+ver llamadas
+ver contactos
+ver mensajes
+contacto <nombre>;<numero>
