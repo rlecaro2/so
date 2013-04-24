@@ -90,10 +90,12 @@ class iOS:
         # Si no hay nada en running ingresamos un proceso a este
         if(self.dispatcher.estadorunning == False):
             self.dispatcher.Proceso_a_Running(self.ready[0])
+            self.ready.pop(0)
         else:
             ## Recordar que cero es la mayor prioridad por lo tanto mayor numero de prioridad indica prioridad mas baja
             if(self.dispatcher.PrioridadProceso()>self.ready[0]):
                 tempprocess = self.dispatcher.Interumpir_proceso(self.ready[0])
+                self.ready.pop(0)
                 self.Insertar_en_ColaReady(tempprocess)
 
     self.dispatcher.Ejecucion_proceso()                                             
