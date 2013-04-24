@@ -33,6 +33,8 @@ class consola():
                 try:
                     numero = numero = command.split(" ")[1]
                     mensaje = command.split(" ")[2]
+                    for n in range(3, len(command.split(" "))):
+                        mensaje += " " + command.split(" ")[n]
                     self.crearMensaje(numero,mensaje)
                 except:
                     print "Uso: \"> mensaje numero mensaje_a_enviar\"" 
@@ -46,9 +48,31 @@ class consola():
                 except:
                     print "Uso: \"> archivo nombreArchivo\""
             elif(command == "top"):
-                self.instruction.value = "top"
-            elif(command == "llamadas"):
-                fm.showCalls()
+                self.instruction.value = "top"            
+            elif(command == "ver"):
+                try:
+                    cmd = command.split(' ')[1]
+                    if(cmd == "llamadas"):
+                        fm.showCalls()
+                    elif(cmd == "mensajes"):
+                        fm.showMessages()
+                    elif(cmd == "contactos"):
+                        contacts = fm.showContacts()
+                        self.callContact(contacts)
+                except:
+                    print "Uso: \"> ver <opcion>\" (llamadas, mensajes o contactos)"
+            elif(command.startswith("contacto")):
+                try:
+                    info = command.split(" ")[1]
+                    for n in range(2, len(command.split(" "))):
+                        info += " " + command.split(" ")[n]
+                    nombre = info.split(';')[0]
+                    numero = info.split(';')[1]
+                    fm.almacenarContacto(nombre,numero)                
+                except:
+                    print "Uso: \"> contacto <nombre>;<numero>\""
+
+
 
 
 
@@ -61,3 +85,13 @@ class consola():
         self.procesoNuevo.value = mensaje
     def cargarArchivo(self,filename):
         self.instruction.value = "file;" + filename
+
+    def callContact(contactos):
+        print "Puedes llamar a un contacto eligiendolo por su numero y anadiendo la duracion separada por un espacio. Si no, aprieta cualquier tecla."
+        command = raw_input("> ")
+        try:
+            num = int(command.split(" ")[0])
+            dur = command.split(" ")[1]
+            crearLlamada(contactos[num].split(';')[1],dur)
+        except:
+            pass

@@ -1,3 +1,4 @@
+
 class fileManager:
 
   @staticmethod
@@ -22,7 +23,9 @@ class fileManager:
   @staticmethod
   def almacenarContacto(nombre,numero):
     content = nombre + ";" + numero + "\n"
-    _appendToFile("Contactos.txt",content)
+    target = open("Contactos.txt", "a")
+    target.write(content)
+    target.close()
 
   @staticmethod
   def showCalls():
@@ -32,8 +35,29 @@ class fileManager:
       print line
       line = target.readline()
     target.close()
-      
 
+  @staticmethod
+  def showMessages():
+    target = open("Historial_Mensajes.txt",'r')
+    line = target.readline()
+    while len(line.strip()) > 0:
+      print line
+      line = target.readline()
+    target.close()
+      
+  @staticmethod
+  def showContacts():
+    target = open("Contactos.txt",'r')
+    stack = []
+    line = target.readline()
+    i=0
+    while len(line.strip()) > 0:
+      print "["+i+"] " + line
+      stack.append(line)
+      line = target.readline()
+      i+=1
+    target.close()
+    return stack
 
 
 

@@ -12,7 +12,7 @@ class recibirMensaje(Proceso):
         #variables especificas de mensaje
      
     def imprimir(self):
-        return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Mensaje recibido de: " + self.numero +  "\n" + self.mensaje + "\n"     
+        return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Mensaje recibido de: " + self.numero +  "\"" + self.mensaje + "\"\n"     
     #Metodo que guarda el mensaje en la memoria del celular (archivo de texto)
     
     def guardar_en_memoria(self):

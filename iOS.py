@@ -120,6 +120,7 @@ class iOS:
         p = self.dispatcher.running
         left = p.duracion - p.t_running
         print "process - time left"
+        print "----------------------------"
         if left > 0:
           print "> " + p.nombre + " - " + str(left) 
         for proc in self.ready:
