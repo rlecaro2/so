@@ -20,14 +20,19 @@ class fileManager:
     return stack
 
   @staticmethod
-  def registrarLlamada(llamada):
-    content = str(llamada.fecha) + " " + str(llamada.t_inicio) + str() 
-    _appendToFile("llamadas.txt", content)
-
-  @staticmethod
   def almacenarContacto(nombre,numero):
     content = nombre + ";" + numero + "\n"
-    _appendToFile("contactos.txt",content)
+    _appendToFile("Contactos.txt",content)
+
+  @staticmethod
+  def showCalls():
+    target = open("Historial_Llamadas.txt",'r')
+    line = target.readline()
+    while len(line.strip()) > 0:
+      print line
+      line = target.readline()
+    target.close()
+      
 
 
 

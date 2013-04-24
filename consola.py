@@ -47,6 +47,8 @@ class consola():
                     print "Uso: \"> archivo nombreArchivo\""
             elif(command == "top"):
                 self.instruction.value = "top"
+            elif(command == "llamadas"):
+                fm.showCalls()
 
 
 
