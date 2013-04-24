@@ -1,10 +1,10 @@
 from iOS import iOS 
 from consola import consola
 from multiprocessing import Manager, Process, Value
+import fileManager
 
 if __name__ == "__main__":
-
-
+  fileManager.clearTxt()
   with Manager() as Manager:
     num = Manager.Value('i', 0)
     procesoNuevo = Manager.Value(unicode, '')
