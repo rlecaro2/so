@@ -1,0 +1,2 @@
+2013-04-23 23:27:58 - Llamada realizada a: 1. Duracion: 1 segundo(s). 
+2013-04-23 23:32:40 - Llamada realizada a: 5. Duracion: 5 segundo(s). 
