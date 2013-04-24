@@ -1,3 +1,0 @@
-2013-04-23 22:27:29 - Llamada realizada a: 54545. Duracion: 2 segundo(s). 
-2013-04-23 22:27:34 - Llamada realizada a: 156548. Duracion: 10 segundo(s). 
-2013-04-23 22:27:41 - Llamada realizada a: 251549. Duracion: 6548 segundo(s). 

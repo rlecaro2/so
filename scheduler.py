@@ -21,15 +21,15 @@ class Scheduler:
 
     def AgendarProcesos(self, filename):        
         tempprocesos = self.leerInput(filename)
-        for p in tempprocesos:
+        for p in tempprocesos:         
             if(len(self.procesos) == 0):
                 self.procesos.append(p)
             else:
                 ## otro for para recorrer procesos y comparar fechas
                 for i in range(0, len(self.procesos)):
-                    if(p.fecha<self.procesos[i]):
+                    if(p.fecha<=self.procesos[i].fecha):
                         self.procesos.insert(i,p)
-                    elif(i == len(self.procesos)):                        
+                    elif(i == len(self.procesos)):                     
                         self.procesos.append(p)
 
 
@@ -38,7 +38,7 @@ class Scheduler:
     def Procesos_a_ejecutar(self,date):
         listaejecucion= []
         for p in self.procesos:
-            if(p.fecha == date):
+            if(p.fecha <= date):
                 listaejecucion.append(p)
         
         return listaejecucion
