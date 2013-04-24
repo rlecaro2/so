@@ -3,3 +3,4 @@
 2013-04-23 23:35:17 - Llamada realizada a: 3. Duracion: 65 segundo(s). 
 2013-04-23 23:35:32 - Llamada realizada a: 3. Duracion: 65 segundo(s). 
 2013-04-23 23:35:45 - Llamada realizada a: 5. Duracion: 99999 segundo(s). 
+2013-04-23 23:45:29 - Llamada realizada a: 5. Duracion: 5 segundo(s). 
