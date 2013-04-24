@@ -27,7 +27,7 @@ class Scheduler:
             else:
                 ## otro for para recorrer procesos y comparar fechas
                 for i in range(0, len(self.procesos)):
-                    if(p.fecha<self.procesos[i]):
+                    if(p.fecha<self.procesos[i].fecha):
                         self.procesos.insert(i,p)
                     elif(i == len(self.procesos)):                        
                         self.procesos.append(p)
