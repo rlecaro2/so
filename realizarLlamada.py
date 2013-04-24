@@ -1,4 +1,6 @@
 from proceso import Proceso
+from fileManager import fileManager
+from time import localtime, strftime
 
 class realizarLlamada(Proceso):
     def __init__(self, args):        
@@ -12,7 +14,7 @@ class realizarLlamada(Proceso):
             return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Llamada realizada a: " + self.numero + ". Duracion: " + str(self.duracion) + " segundos."
     
     def guardar_en_memoria(self):
-        fileManager.appendToFile("Historial_Llamadas.txt", imprimir())
+        fileManager.appendToFile("Historial_Llamadas.txt", self.imprimir())
         
     def finish(self):
-        guardar_en_memoria()
+        self.guardar_en_memoria()
