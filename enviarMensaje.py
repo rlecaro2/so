@@ -18,5 +18,6 @@ class enviarMensaje(Proceso):
         fileManager.appendToFile("Historial_Mensajes.txt", self.imprimir())
 
     def finish(self):
+        fileManager.appendToFile("Log.txt", self.imprimir())
         self.guardar_en_memoria()
 

@@ -21,4 +21,5 @@ class agregarContacto(Proceso):
         fileManager.appendToFile("Agenda_Telefonica.txt", self.content())
 
     def finish(self):
+        fileManager.appendToFile("Log.txt", self.imprimir())
         self.guardar_en_memoria()

@@ -17,4 +17,5 @@ class recibirLlamada(Proceso):
         fileManager.appendToFile("Historial_Llamadas.txt", imprimir())
         
     def finish(self):
+        fileManager.appendToFile("Log.txt", self.imprimir())
         guardar_en_memoria()
