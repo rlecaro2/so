@@ -98,7 +98,7 @@ class iOS:
 
     self.dispatcher.Ejecucion_proceso()                                             
     self.fecha += 1
-    self.sharedTimer = self.fecha
+    self.sharedTimer.value = self.fecha
   
   ## La cola ready esta ordena por prioridad
   ## M?todo que inserta de forma ordena los m?todo en ready, de acuerdo con su prioridad y fecha llegada a la cola
