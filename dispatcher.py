@@ -11,31 +11,30 @@ class Dispatcher:
 
    #Pone el proceso en running
     def Proceso_a_Running(self,proceso):
-        self.running= proceso
-        self.estadorunning=True;        
+        self.running = proceso
+        self.estadorunning = True;        
 
     #Actualiza los datos del proceso en ejecuci?n
     ## si correponde que el proceso debe terminar, lo termina 
     def Ejecucion_proceso(self):
-
-        if(self.running.trunning()!=self.running.duracion()):
+        if(self.running.t_running != self.running.duracion):
             self.running.add1_to_trunning()
         else:
             self.Terminar_proceso()
 
     #Entrega los datos del proceso que estan en running
     def PrioridadProceso(self):
-        return self.running.prioridad()
+        return self.running.prioridad
 
     #Cuando llega un proceso de menor prioridad quita el proceso en ejecuci?n, para ello respalda de la informo de este proceso para cuando 
     #tenga q volver a ser ejecutado y lo retorno para que entre en la cola ready
     def Interumpir_proceso(self, proceso):
         self.temporal = self.running
-        self.running=proceso
+        self.running = proceso
         return self.temporal
 
     #cuando termina de ejecutarse un proceso este metodo vacia el running
     def Terminar_proceso(self): 
-        self.estadorunning=False
-        self.finish()
+        self.estadorunning = False
+        self.running.finish()
         

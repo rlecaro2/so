@@ -35,7 +35,7 @@ class Scheduler:
 
 
     #Revisa la lista de procesos y devuelve aquellos que se deben ejecutar en la fech recibida
-    def Procesos_a_ejecutar(date):
+    def Procesos_a_ejecutar(self,date):
         listaejecucion= []
         for p in self.procesos:
             if(p.fecha == date):

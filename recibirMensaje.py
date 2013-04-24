@@ -1,4 +1,5 @@
 from proceso import Proceso
+from fileManager import fileManager
 
 class recibirMensaje(Proceso):
     def __init__(self, args):        

@@ -13,13 +13,13 @@ from juego import juego
 from musica import musica
 
 class consola():
-    def __init__(self, queue, num):
-        self.queue = queue
+    def __init__(self, num, instruction, procesoNuevo):
+        self.instruction = instruction
+        self.procesoNuevo = procesoNuevo
         self.sharedTimer = num
         self.running = True
 
-    def Run(self):
-        
+    def Run(self):        
         while(self.running):
             command = raw_input("> ")
             if(command.startswith("llamar")):
@@ -37,7 +37,7 @@ class consola():
                 except:
                     print "Uso: \"> mensaje numero mensaje_a_enviar\"" 
             elif(command == "exit"):
-                self.queue.put("exit")
+                self.instruction.value = "exit"
                 self.running = False
             elif(command.startswith("archivo")):
                 try:
@@ -46,16 +46,16 @@ class consola():
                 except:
                     print "Uso: \"> archivo nombreArchivo\""
             elif(command == "top"):
-                self.queue.put("top")
+                self.instruction.value = "top"
 
 
 
 
     def crearLlamada(self,numero,duracion):
-        llamada = realizarLlamada(["llamada",self.sharedTimer,1,0,numero,duracion])
-        self.queue.put(llamada)
+        llamada = "llamada"+";"+str(self.sharedTimer.value)+";"+str(1)+";"+str(0)+";"+str(numero)+";"+str(duracion)
+        self.procesoNuevo.value = llamada
     def crearMensaje(self,numero,mensaje):
         mensaje = enviarMensaje(["mensaje",self.sharedTimer,3,2,numero,mensaje])
-        self.queue.put(mensaje)
+        self.arr.put(mensaje)
     def cargarArchivo(self,filename):
-        self.queue.put("file;" + str(filename))
+        self.instruction.value = "file;" + filename
