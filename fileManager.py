@@ -32,7 +32,15 @@ class fileManager:
       print line
       line = target.readline()
     target.close()
-      
+
+  @staticmethod
+  def showMsgs():
+    target = open("Historial_Mensajes.txt",'r')
+    line = target.readline()
+    while len(line.strip()) > 0:
+      print line
+      line = target.readline()
+    target.close()      
 
 
 
