@@ -1,5 +1,6 @@
 from fileManager import fileManager
 from time import localtime, strftime
+import time
 
 class Proceso:
   
@@ -8,7 +9,7 @@ class Proceso:
 
   def __init__(self, args):
     self.nombre = args[0]
-    self.fecha = args[1]
+    self.fecha = int(args[1])
     self.tipo = args[2]
     self.prioridad = int(args[3])
     #variables comunes a todo proceso
@@ -25,6 +26,7 @@ class Proceso:
 
   def add1_to_trunning(self):
     self.t_running += 1
+    time.sleep(1)
 
   def finish(self):
     pass

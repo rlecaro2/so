@@ -14,8 +14,8 @@ class recibirLlamada(Proceso):
         return strftime("%Y-%m-%d %H:%M:%S", localtime()) + " - Llamada recibida de: " + self.numero + ". Duracion: " + str(self.duracion) + " segundo(s). \n"
     
     def guardar_en_memoria(self):
-        fileManager.appendToFile("Historial_Llamadas.txt", imprimir())
+        fileManager.appendToFile("Historial_Llamadas.txt", self.imprimir())
         
     def finish(self):
         fileManager.appendToFile("Log.txt", self.imprimir())
-        guardar_en_memoria()
+        self.guardar_en_memoria()

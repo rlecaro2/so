@@ -35,7 +35,7 @@ class fileManager:
 
   @staticmethod
   def showCalls():
-    target = open("Historial_Llamadas.txt",'r')
+    target = open("Historial_Llamadas.txt",'r+')
     line = target.readline()
     while len(line.strip()) > 0:
       print line
@@ -50,15 +50,15 @@ class fileManager:
       print line
       line = target.readline()
     target.close()
-      
-  @staticmethod
+  
+  @staticmethod   
   def showContacts():
     target = open("Contactos.txt",'r')
     stack = []
     line = target.readline()
     i=0
     while len(line.strip()) > 0:
-      print "["+i+"] " + line
+      print "["+str(i)+"] " + line
       stack.append(line)
       line = target.readline()
       i+=1

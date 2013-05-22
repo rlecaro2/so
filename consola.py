@@ -42,14 +42,14 @@ class consola():
                 self.instruction.value = "exit"
                 self.running = False
             elif(command.startswith("archivo")):
-                try:
-                    filename = command.split(" ")[1]
-                    self.cargarArchivo(filename)
-                except:
-                    print "Uso: \"> archivo nombreArchivo\""
+                #try:
+                filename = command.split(" ")[1]
+                self.cargarArchivo(filename)
+                #except:
+                 #   print "Uso: \"> archivo nombreArchivo\""
             elif(command == "top"):
                 self.instruction.value = "top"            
-            elif(command == "ver"):
+            elif(command.startswith("ver")):
                 try:
                     cmd = command.split(' ')[1]
                     if(cmd == "llamadas"):
@@ -72,11 +72,6 @@ class consola():
                 except:
                     print "Uso: \"> contacto <nombre>;<numero>\""
 
-
-
-
-
-
     def crearLlamada(self,numero,duracion):
         llamada = "llamada"+";"+str(self.sharedTimer.value)+";"+str(1)+";"+str(0)+";"+str(numero)+";"+str(duracion)
         self.procesoNuevo.value = llamada
@@ -85,13 +80,12 @@ class consola():
         self.procesoNuevo.value = mensaje
     def cargarArchivo(self,filename):
         self.instruction.value = "file;" + filename
-
-    def callContact(contactos):
+    def callContact(self,contactos):
         print "Puedes llamar a un contacto eligiendolo por su numero y anadiendo la duracion separada por un espacio. Si no, aprieta cualquier tecla."
         command = raw_input("> ")
-        try:
+        try:        
             num = int(command.split(" ")[0])
             dur = command.split(" ")[1]
-            crearLlamada(contactos[num].split(';')[1],dur)
+            self.crearLlamada(int(contactos[num].split(';')[1]),dur)
         except:
             pass

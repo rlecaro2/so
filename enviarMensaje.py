@@ -1,6 +1,7 @@
 from proceso import Proceso
 from fileManager import fileManager
 from time import localtime, strftime
+import math
 
 class enviarMensaje(Proceso):
     def __init__(self, args):        
@@ -8,7 +9,7 @@ class enviarMensaje(Proceso):
 
         self.numero = args[4]
         self.mensaje = args[5]
-        self.duracion = len(self.mensaje)*20
+        self.duracion = math.ceil(len(self.mensaje)*0.02)
         #variables especificas de mensaje
     
     def imprimir(self):

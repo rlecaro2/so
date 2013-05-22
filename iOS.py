@@ -22,9 +22,9 @@ class iOS:
     self.sharedTimer = num
     self.running = True
     # Cola ready de los procesos
-    self.ready=[]
+    self.ready = []
     #self.historial
-    self.scheduler= sch.Scheduler()
+    self.scheduler = sch.Scheduler()
     self.dispatcher = dp.Dispatcher()
     self.fecha = 0
 
@@ -78,7 +78,9 @@ class iOS:
 
   def addFile(self, filename):     
       # Al hacer esto el scheduler lee el input y agenda los procesos ordenadamente
-      self.scheduler.AgendarProcesos(filename)         
+      self.scheduler.AgendarProcesos(filename)
+      for r in self.ready:
+        print r         
   
   def Run(self):
     tempready = self.scheduler.Procesos_a_ejecutar(self.fecha)
@@ -98,7 +100,7 @@ class iOS:
                 self.ready.pop(0)
                 self.Insertar_en_ColaReady(tempprocess)
 
-    self.dispatcher.Ejecucion_proceso()                                             
+    self.dispatcher.Ejecucion_proceso()
     self.fecha += 1
     self.sharedTimer.value = self.fecha
   
@@ -106,15 +108,13 @@ class iOS:
   ## M?todo que inserta de forma ordena los m?todo en ready, de acuerdo con su prioridad y fecha llegada a la cola
   ## Fecha llegada == Fecha ejecucion 
   def Insertar_en_ColaReady(self, process):
-        if(len(self.ready) == 0):
-            self.ready.append(process)
-        else:
-            ## Esto es solo en caso que deba ir al final de la fila, para no tener que recorrerla entera
-            if(process.prioridad<self.ready[len(self.ready)-1].prioridad):
-                self.ready.insert(len(self.ready)-1,process)
-                for i in range (1, len(self.ready)-2):
-                    if(process.prioridad()<self.ready[i].prioridad()):
-                        self.ready.insert(i,process)
+        inserted = False
+        for p in self.ready:
+          if not inserted and process.prioridad < p.prioridad:
+            self.ready.insert(self.ready.index(p),process)
+            inserted = True
+        if not inserted:
+          self.ready.append(process)
 
   def top(self):
         p = self.dispatcher.running
@@ -124,7 +124,7 @@ class iOS:
         if left > 0:
           print "> " + p.nombre + " - " + str(left) 
         for proc in self.ready:
-            left = proc.duracion - proc.t_running
+            left = int(proc.duracion - proc.t_running)
             if left > 0:
               print "> " + proc.nombre + " - " + str(left)
         print "----------------------------" 

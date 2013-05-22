@@ -21,26 +21,24 @@ class Scheduler:
 
     def AgendarProcesos(self, filename):        
         tempprocesos = self.leerInput(filename)
-        for p in tempprocesos:         
-            if(len(self.procesos) == 0):
-                self.procesos.append(p)
-            else:
-                ## otro for para recorrer procesos y comparar fechas
-                for i in range(0, len(self.procesos)):
-                    if(p.fecha<=self.procesos[i].fecha):
-                        self.procesos.insert(i,p)
-                    elif(i == len(self.procesos)):                     
-                        self.procesos.append(p)
 
-
+        inserted = False       
+        for process in tempprocesos:         
+            inserted = False
+            for p in self.procesos:
+                if not inserted and process.fecha < p.fecha:
+                    self.procesos.insert(self.procesos.index(p),process)
+                    inserted = True
+            if not inserted:
+                self.procesos.append(process)
 
     #Revisa la lista de procesos y devuelve aquellos que se deben ejecutar en la fech recibida
-    def Procesos_a_ejecutar(self,date):
-        listaejecucion= []
+    def Procesos_a_ejecutar(self, date):
+        listaejecucion = []        
         for p in self.procesos:
             if(p.fecha <= date):
                 listaejecucion.append(p)
-        
+                self.procesos.remove(p)     
         return listaejecucion
         
     # Metodo que retorna la lista de prorcesos instanciada

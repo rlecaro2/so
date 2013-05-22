@@ -1,6 +1,7 @@
 from proceso import Proceso
 from fileManager import fileManager
 from time import localtime, strftime
+import math
 
 class recibirMensaje(Proceso):
     def __init__(self, args):        
@@ -8,7 +9,7 @@ class recibirMensaje(Proceso):
 
         self.numero = args[4]
         self.mensaje = args[5]
-        self.duracion = len(self.mensaje)*20
+        self.duracion = math.ceil(len(self.mensaje)*0.02)
         #variables especificas de mensaje
      
     def imprimir(self):
@@ -17,8 +18,8 @@ class recibirMensaje(Proceso):
     #Metodo que guarda el mensaje en la memoria del celular (archivo de texto)
     
     def guardar_en_memoria(self):
-        fileManager.appendToFile("Historial_Mensajes.txt", imprimir())
+        fileManager.appendToFile("Historial_Mensajes.txt", self.imprimir())
 
     def finish(self):
         fileManager.appendToFile("Log.txt", self.imprimir())
-        guardar_en_memoria()
+        self.guardar_en_memoria()
