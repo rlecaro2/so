@@ -21,7 +21,6 @@ class Scheduler:
 
     def AgendarProcesos(self, filename):        
         tempprocesos = self.leerInput(filename)
-
         inserted = False       
         for process in tempprocesos:         
             inserted = False
