@@ -21,6 +21,14 @@ class iOS:
     self.procesoNuevo = procesoNuevo
     self.sharedTimer = num
     self.running = True
+    self.estados_IO = {
+      "pantalla" : "D",
+      "audifono" : "D",
+      "microfono" : "D", 
+      "GPS" : "D",
+      "enviar info" : "D",
+      "recibir info" : "D"
+    }
     # Cola ready de los procesos
     self.ready = []
     #self.historial
