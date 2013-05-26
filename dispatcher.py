@@ -69,7 +69,7 @@ class Dispatcher:
 
     def PuedeEntrarEnRunning(self, proceso):        
         ##vemos si el proceso actual puede funcionar con todos los procesos que estan dentro
-        if not self.running:
+        if len(self.running) == 0:
             return True
         respuesta = []          
         for p in self.running:

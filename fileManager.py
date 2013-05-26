@@ -23,7 +23,8 @@ class fileManager:
       attr = line.split(';')
       stack.append(attr)
       line = target.readline()
-      
+    
+    target.close()
     return stack
 
   @staticmethod

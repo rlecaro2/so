@@ -1,3 +1,4 @@
+import os, time
 import multiprocessing
 import dispatcher as dp
 import scheduler as sch
@@ -25,8 +26,8 @@ class iOS:
     self.running = True
   
     # Cola ready de los procesos
-    #self.ready = [] no deberia tener nadie en ready, solo en running o waiting
-    #Cola weating
+    self.ready = []
+    #Cola waiting
     self.waiting = [] 
     #self.historial
     self.scheduler = sch.Scheduler()
@@ -87,14 +88,20 @@ class iOS:
   
   def Run(self):
     self.limpiarRunning()
-    self.waiting += (self.scheduler.Procesos_a_ejecutar(self.fecha)) #Entran a esperar los procesos que corresponda
-    self.waiting = sorted(self.waiting, cmp = helpers.sortByPriority)
+    self.ready += (self.scheduler.Procesos_a_ejecutar(self.fecha)) #Entran a esperar los procesos que corresponda
+
+    #self.waiting = sorted(self.waiting, cmp = helpers.sortByPriority)
+
     #la cola waiting se reordena segun el criterio que se ocupe en cmp
     for w in self.waiting: #si hay algun proceso en waiting
         if(self.dispatcher.PuedeEntrarEnRunning(w)):#si puede entrar a correr
-            self.waiting += (self.dispatcher.IngresarYsacarProcesos(self.waiting[0])) #entra y los que salen se ponen en waiting (despues los ordenamos)
-            print "entra: " + w.nombre
+            self.waiting += (self.dispatcher.IngresarYsacarProcesos(w)) #entra y los que salen se ponen en waiting (despues los ordenamos)
             self.waiting.pop(self.waiting.index(w)) #se saca de waiting el proceso que acaba de entrar
+
+    for r in self.ready:
+      if(self.dispatcher.PuedeEntrarEnRunning(r)):#si puede entrar a correr
+            self.waiting += (self.dispatcher.IngresarYsacarProcesos(r)) #entra y los que salen se ponen en waiting (despues los ordenamos)
+            self.ready.pop(self.ready.index(r)) #se saca de waiting el proceso que acaba de entrar
 
     self.fecha += 1
     self.sharedTimer.value = self.fecha
@@ -118,13 +125,37 @@ class iOS:
 
 
   def top(self):
-        print "process - time left"
-        print "----------------------------"
-        for p in self.dispatcher.running:
-            left = p.duracion - p.t_running
-            if left > 0:
-              print "> " + p.nombre + " - " + str(left) 
-        print "----------------------------" 
+
+    os.system('cls' if os.name=='nt' else 'clear')
+    content = "Running \n"
+    content += "process - time left\n"
+    content += "----------------------------\n"
+    for p in self.dispatcher.running:
+        left = p.duracion - p.t_running
+        if left > 0:
+          content += "> " + p.nombre + " - " + str(int(left)) +"\n"
+    content += "---------------------------- \n"     
+
+    content += "Waiting \n"
+    content += "process - time left\n"
+    content += "----------------------------\n"
+    for p in self.waiting:
+        left = p.duracion - p.t_running
+        if left > 0:
+          content += "> " + p.nombre + " - " + str(int(left)) +"\n"
+    content += "---------------------------- \n" 
+
+    content += "Ready \n"
+    content += "process - time left\n"
+    content += "----------------------------\n"
+    for p in self.ready:
+        left = p.duracion - p.t_running
+        if left > 0:
+          content += "> " + p.nombre + " - " + str(int(left)) +"\n"
+    content += "---------------------------- \n" 
+    print content
+
+
 
   
         
