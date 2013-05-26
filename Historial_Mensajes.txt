@@ -1,0 +1,4 @@
+2013-05-25 21:52:15 - Mensaje enviado a: 2277567, mensaje: "Como va?"
+2013-05-25 21:52:15 - Mensaje recibido de: 2277567, mensaje: "Alo?"
+2013-05-25 21:52:16 - Mensaje recibido de: 2277567, mensaje: "Hola"
+2013-05-25 21:52:17 - Mensaje recibido de: 2277567, mensaje: "Bien y tu?"

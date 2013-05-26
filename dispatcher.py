@@ -1,4 +1,5 @@
 import proceso as p
+import threading
 
 class Dispatcher:     
 
@@ -7,7 +8,7 @@ class Dispatcher:
         self.estadorunning = False
         self.paloBlanco = p.Proceso(["nn",6,10,0])
         #Se debe respaldar el proceso en ejecuci?n, se empieza con un proceso en defecto
-        self.running = p.Proceso(["nn",6,10,0])
+        self.running = []
         self.estados_IO = {
           "pantalla" : "D",
           "audifono" : "D",
@@ -51,50 +52,54 @@ class Dispatcher:
  
     ##Si un proceso puede ingresar este metodo lo mete en running y saca aquellos que no puedan estar cn el, en caso 
     ## de que no debe salir ninguno, retorna una lista vacia
-    def IngresarYsacarProcesos(self, proceso):
-        
-        procesos_fuera=[]
+    def IngresarYsacarProcesos(self, proceso):        
+        procesos_fuera = []
         for i in range(0, len(self.running)):
             if(self.PuedenFuncionarJuntos(proceso, self.running[i]) == False):
-                if(self.running[i].prioridad<proceso.prioridad):
+                if(self.running[i].prioridad>proceso.prioridad ): #menor prioridad es mejor
                     procesos_fuera.append(self.running[i])
-                    running.pop(i)
+                    running.pop(i).run.clear() #no puede correr mas
 
         ##Hay que modificar este metodo para que ingrese los procesos en la lista ordenados por prioridad, recordar que el actual
         ##Solo aguanta un proceso
-        self.Proceso_a_Running(proceso)
+        self.running.append(proceso)
+        proceso.run.set() #el que entra puede correr
         return procesos_fuera 
     ##assDetermina si es facible ingresar un proceso a running
-    def PuedeEntrarEnRunning(self, proceso):
-        
-        ##vemos si el proceso actual puede funcionar con todos los procesos que estan dentro              
+
+    def PuedeEntrarEnRunning(self, proceso):        
+        ##vemos si el proceso actual puede funcionar con todos los procesos que estan dentro
+        if not self.running:
+            return True
+        respuesta = []          
         for p in self.running:
             ##guardamos para cada proceso en running si puede funcionar con el
-            respuesta.append ( self.PuedenFuncionarJuntos(proceso,p))
+            respuesta.append (self.PuedenFuncionarJuntos(proceso,p))
         for i in range(0,len(respuesta)):
             if(respuesta[i] == False):
-                if(self.running[i].prioridad>proceso.prioridad):
+                #Revisa si el proceso que esta corriendo bloquea el recurso
+                for key in proceso.recursos:
+                    if(self.running[i].recursos.get(key) == "B"):
+                        return False
+                #Si no hay nada bloqueado, comparamos prioridades       
+                if(self.running[i].prioridad < proceso.prioridad):
                    return False
             else:
-                   return True
+                return True
                    
 
 
     def PuedenFuncionarJuntos(self,P1,P2):
-
-      temp_recursos1 = P1.setRecursos()
-      temp_recursos2 = P2.setRecursos()
-      recursos = P1.keys();
-      
-      for key in recursos:
-          
+        temp_recursos1 = P1.recursos
+        temp_recursos2 = P2.recursos
+        for key in temp_recursos1:          
           if(temp_recursos2.has_key(key)):
               ##Evaluar de acuerdo a la tabla si pueden estar juntos operando
-              if(temp_recursos1.get(key)=="B" | temp_recusos2.get(key)=="B"): 
+              if(str(temp_recursos1.get(key) == "B") or str(temp_recursos2.get(key) == "B")): 
                   return False;
-              elif(temp_recursos1.get(key)=="N" & temp_recusos2.get(key)=="N"):
+              elif(str(temp_recursos1.get(key)) == "N" and str(temp_recursos2.get(key) == "N")):
                   return False  
               else:
                   return True
- 
+
   

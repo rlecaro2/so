@@ -13,6 +13,8 @@ from enviarPosicion import enviarPosicion
 from verPosicion import verPosicion
 from juego import juego
 from musica import musica
+import threading
+from helpers import helpers
 
 class iOS:  
 
@@ -23,9 +25,9 @@ class iOS:
     self.running = True
   
     # Cola ready de los procesos
-    self.ready = []
+    #self.ready = [] no deberia tener nadie en ready, solo en running o waiting
     #Cola weating
-    self.weating =[] 
+    self.waiting = [] 
     #self.historial
     self.scheduler = sch.Scheduler()
     self.dispatcher = dp.Dispatcher()
@@ -76,34 +78,24 @@ class iOS:
     elif tipo == 10:
         proc = musica(data)
 
-    self.Insertar_en_ColaReady(proc)
+    self.waiting.append(proc)
     self.procesoNuevo.value = ""
 
   def addFile(self, filename):     
       # Al hacer esto el scheduler lee el input y agenda los procesos ordenadamente
-      self.scheduler.AgendarProcesos(filename)
-      for r in self.ready:
-        print r         
+      self.scheduler.AgendarProcesos(filename)       
   
   def Run(self):
-    tempready = self.scheduler.Procesos_a_ejecutar(self.fecha)
-          # Insertamos en la cola ready los procesos que ya se gatillaron
-    for p in tempready:
-        self.Insertar_en_ColaReady(p)
-  
-    if (len(self.ready)>0):
-        # Si no hay nada en running ingresamos un proceso a este
-        if(self.dispatcher.estadorunning == False):
-            self.dispatcher.Proceso_a_Running(self.ready[0])
-            self.ready.pop(0)
-        else:
-            ## Recordar que cero es la mayor prioridad por lo tanto mayor numero de prioridad indica prioridad mas baja
-            if(self.dispatcher.PrioridadProceso()>self.ready[0]):
-                tempprocess = self.dispatcher.Interumpir_proceso(self.ready[0])
-                self.ready.pop(0)
-                self.Insertar_en_ColaReady(tempprocess)
+    self.limpiarRunning()
+    self.waiting += (self.scheduler.Procesos_a_ejecutar(self.fecha)) #Entran a esperar los procesos que corresponda
+    self.waiting = sorted(self.waiting, cmp = helpers.sortByPriority)
+    #la cola waiting se reordena segun el criterio que se ocupe en cmp
+    for w in self.waiting: #si hay algun proceso en waiting
+        if(self.dispatcher.PuedeEntrarEnRunning(w)):#si puede entrar a correr
+            self.waiting += (self.dispatcher.IngresarYsacarProcesos(self.waiting[0])) #entra y los que salen se ponen en waiting (despues los ordenamos)
+            print "entra: " + w.nombre
+            self.waiting.pop(self.waiting.index(w)) #se saca de waiting el proceso que acaba de entrar
 
-    self.dispatcher.Ejecucion_proceso()
     self.fecha += 1
     self.sharedTimer.value = self.fecha
   
@@ -119,17 +111,19 @@ class iOS:
         if not inserted:
           self.ready.append(process)
 
+  def limpiarRunning(self):
+    for p in self.dispatcher.running:
+      if p.finished:
+        self.dispatcher.running.remove(p)
+
+
   def top(self):
-        p = self.dispatcher.running
-        left = p.duracion - p.t_running
         print "process - time left"
         print "----------------------------"
-        if left > 0:
-          print "> " + p.nombre + " - " + str(left) 
-        for proc in self.ready:
-            left = int(proc.duracion - proc.t_running)
+        for p in self.dispatcher.running:
+            left = p.duracion - p.t_running
             if left > 0:
-              print "> " + proc.nombre + " - " + str(left)
+              print "> " + p.nombre + " - " + str(left) 
         print "----------------------------" 
 
   

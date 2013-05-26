@@ -1,0 +1,4 @@
+2013-05-25 21:51:34 - Llamada recibida de: 2277567. Duracion: 15 segundo(s). 
+2013-05-25 21:51:44 - Llamada realizada a: 2277567. Duracion: 10 segundo(s). 
+2013-05-25 21:51:59 - Llamada recibida de: 2277567. Duracion: 15 segundo(s). 
+2013-05-25 21:52:14 - Llamada recibida de: 2277567. Duracion: 15 segundo(s). 
