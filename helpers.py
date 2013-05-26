@@ -11,4 +11,6 @@ class helpers:
 
   @staticmethod
   def sortByPriority(x, y):
+    if x.prioridad == y.prioridad:
+      return x.fecha - y.fecha
     return x.prioridad - y.prioridad
