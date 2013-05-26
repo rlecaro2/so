@@ -1,4 +1,5 @@
 
+import threading
 class fileManager:
 
   @staticmethod
@@ -22,8 +23,7 @@ class fileManager:
       line = line.strip("\n")
       attr = line.split(';')
       stack.append(attr)
-      line = target.readline()
-    
+      line = target.readline()    
     target.close()
     return stack
 
