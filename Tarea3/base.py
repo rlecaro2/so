@@ -16,7 +16,7 @@ import random
 def cls():
     os.system(['clear','cls'][os.name == 'nt'])
 
-#Clase generica. Se asumió que todos los procesos tienen tiempo (ver proceso 5)
+#Clase generica. Se asumi?? que todos los procesos tienen tiempo (ver proceso 5)
 class Proceso:
 
     #Inicializa la clase
@@ -51,27 +51,27 @@ class Proceso:
         return
     def texto(self):
         if(self.tipo == 1):
-            return "Se hizo una llamada al número %d que se demoró %d segundos." %(self.numero, self.tiempoTotal)
+            return "Se hizo una llamada al n??mero %d que se demor?? %d segundos." %(self.numero, self.tiempoTotal)
         elif(self.tipo == 2):
-            return "Se recibió una llamada del número %d que se demoró %d segundos." %(self.numero, self.tiempoTotal)
+            return "Se recibi?? una llamada del n??mero %d que se demor?? %d segundos." %(self.numero, self.tiempoTotal)
         elif(self.tipo == 3):
-            return "Se envió el siguiente mensaje al número %d : %s . Enviarlo se demoró %d segundos." %(self.numero, self.txt, self.tiempoTotal)
+            return "Se envi?? el siguiente mensaje al n??mero %d : %s . Enviarlo se demor?? %d segundos." %(self.numero, self.txt, self.tiempoTotal)
         elif(self.tipo == 4):
-            return "Se recibió el siguiente mensaje del número %d : %s . Recibirlo se demoró %d segundos." %(self.numero, self.txt, self.tiempoTotal)
+            return "Se recibi?? el siguiente mensaje del n??mero %d : %s . Recibirlo se demor?? %d segundos." %(self.numero, self.txt, self.tiempoTotal)
         elif(self.tipo == 5):
-            return "Se agregó a %s en la agenda de contactos y su número es %d ." %(self.nombre_contacto, self.numero_contacto)
+            return "Se agreg?? a %s en la agenda de contactos y su n??mero es %d ." %(self.nombre_contacto, self.numero_contacto)
         elif(self.tipo == 6):
-            return "Se ejecutó un proceso que duró %d segundos." %(self.tiempoTotal)
+            return "Se ejecut?? un proceso que dur?? %d segundos." %(self.tiempoTotal)
         elif(self.tipo == 7):
-            return "Se mandó la ubicación, proceso que tomó dos segundos."
+            return "Se mand?? la ubicaci??n, proceso que tom?? dos segundos."
         elif(self.tipo == 8):
-            return "Se vió la ubicación, proceso que tomó %d segundos." % (self.tiempoTotal)
+            return "Se vi?? la ubicaci??n, proceso que tom?? %d segundos." % (self.tiempoTotal)
         elif(self.tipo == 9):
-            return "Se se jugó durante %d segundos." % (self.tiempoTotal)
+            return "Se se jug?? durante %d segundos." % (self.tiempoTotal)
         elif(self.tipo == 10):
-            return "Se escuchó música por %d segundos." % (self.tiempoTotal)
+            return "Se escuch?? m??sica por %d segundos." % (self.tiempoTotal)
         else:
-            return "Se intentó ejecutar un proceso inexistente. No nos ponga a prueba."
+            return "Se intent?? ejecutar un proceso inexistente. No nos ponga a prueba."
         
         
         
@@ -100,7 +100,7 @@ class Llamada(Proceso):
         self.listperi.append(1)
         self.listperi.append(1)
         
-    #Aqui van los metodos que se le quieran añadir
+    #Aqui van los metodos que se le quieran a??adir
         
 class Mensaje(Proceso):
     def __init__(self, texto_proceso):
@@ -204,7 +204,7 @@ class Varios(Proceso):
 #Clase representando el proceso que se esta ejecutando      
 class Simulador:
     
-    #Inicializador de la ejecución de los procesos
+    #Inicializador de la ejecuci??n de los procesos
     def __init__(self):
         pass
         
@@ -220,7 +220,7 @@ class Simulador:
                     perifericos[x] = running[p].getListperi(x)
                 
         
-    #Función que simula los procesos, proceso_andando es el numero
+    #Funci??n que simula los procesos, proceso_andando es el numero
     def Simular(self):
         global disp
         global top
@@ -247,7 +247,7 @@ class Simulador:
                   if(r.getTiempo != -10): 
                         #print running.texto()
                         r.decTiempo()
-                        #acá se graba en memoria cuando el proceso termina 
+                        #ac?? se graba en memoria cuando el proceso termina 
                         if(r.getTiempo() <= 0):
                             memoria.escribir_memoria(r)
                             running.remove(r)
@@ -316,7 +316,7 @@ class Simulador:
                     x += 1
                     y = len(procesos)
             
-            # v 2.3 revisa en la cola ready si puede entrar alguno después de que llegaron procesos o de que terminaron procesos
+            # v 2.3 revisa en la cola ready si puede entrar alguno despu??s de que llegaron procesos o de que terminaron procesos
             if(cambioperif):
                 self.updateReady()
             
@@ -338,7 +338,7 @@ class Simulador:
         global ready
         #v2.3
         global perifericos
-    # v 2.3 revisa en la cola ready si puede entrar alguno después de que llegaron procesos o de que terminaron procesos
+    # v 2.3 revisa en la cola ready si puede entrar alguno despu??s de que llegaron procesos o de que terminaron procesos
         if(True):
             x = 0
             y = len(ready)
@@ -566,13 +566,20 @@ def enviar_comando(mensaje):
         servidor.enviar_mensaje(mensaje)
 
 def realizar_llamada():
-    mensaje = 'CALL01;41;1;0;2277567;10'
+    mensaje = 'CALL01;41;1;0;2277567;-10'
     procesos.append(Llamada(mensaje))
     enviar_comando(mensaje) 
 
 def terminar_llamada():
+   
+    global running
+
     mensaje = "terminar_llamada"
     #logica para matar llamada localmente, probablemente un metodo q se llama aca y alla
+    for r in running: 
+        if(r.getNombre == "CALL01" ):
+            r.getTiempo=0
+
     enviar_comando(mensaje)
 
 def enviar_mensaje(mensaje):

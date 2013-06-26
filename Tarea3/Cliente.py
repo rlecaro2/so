@@ -15,12 +15,11 @@ class Cliente:
     def enviar_mensajes(self, msj):
 
         ##Formato: enviar_mensaje;Fecha Ejecucion, Tipo Proceso, Prioridad Base,  receptor, texto que se quiere enviar 
-        print("Ingrese la instruccion a envia en el formato establecido")
-        while(True):           
-            mensaje = msj
-            self.socket.send("mensaje;" + mensaje)
+        mensaje = msj
+        self.socket.send("mensaje;" + mensaje)
 
     def recibir_mensaje(self):
+
         while True:
             msg = self.socket.recv(4096) # recibimos mensajes
             print("Instruccion recibida: "+ msg)  
@@ -37,11 +36,12 @@ class Cliente:
         threading.Thread._Thread__stop()
 
     def run(self):
-        threading.Thread(target= self.enviar_mensajes).start()
+       
         threading.Thread(target= self.recibir_mensaje).start()
 
     def GetIntruccionesRecibidas(self):
-        aux = ProcesosRecibidos.pop()
+        aux = ProcesosRecibidos
+        self.ProcesosRecibidos =[]
         return aux
 
 

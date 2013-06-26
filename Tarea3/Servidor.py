@@ -19,7 +19,8 @@ class Servidor:
             sys.exit()
 
 
-    def escuchar_cliente(self):           
+    def escuchar_cliente(self):
+           
             while True:
                 data = client.recv(1024)
                 print("Instruccion recibida: "+ data)                     
@@ -28,9 +29,8 @@ class Servidor:
     def enviar_mensajes(self, msj):
 
         print("Ingrese la instruccion a envia en el formato establecido")
-        while(True):
-            mensaje= msj
-            self.socket.send(mensaje)
+        mensaje= msj
+        self.socket.send(mensaje)
 
     def llamar(self):
         pass
@@ -45,12 +45,12 @@ class Servidor:
         
    
     def run(self):
-        threading.Thread(target= self.enviar_mensajes).start()
-        threading.Thread(target= self.escuchar_cliente).start()
 
+        threading.Thread(target= self.escuchar_cliente).start()
     
     def GetIntruccionesRecibidas(self):
-        aux = ProcesosRecibidos.pop()
+        aux = ProcesosRecibidos
+        self.ProcesosRecibidos =[]
         return aux
 
 
