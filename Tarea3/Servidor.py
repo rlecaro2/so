@@ -1,7 +1,7 @@
 ﻿from socket import socket, AF_INET, SOCK_STREAM 
 import  sys , threading
 
-class Servidor:
+class Servidor(threading.Thread):
            
     def  __init__(self, port, ip, Num_connec):
         self.puerto= port
@@ -29,15 +29,17 @@ class Servidor:
 
     def enviar_mensajes(self, msj):        
         mensaje= msj
-        self.socket.send(mensaje)
+        self.client.send(mensaje)
 
 
     def finalizarconexion():
         self.servidor.close()
-        threading.Thread._Thread__stop()        
-   
+        threading.Thread._Thread__stop()
+        
     def run(self):
+        self.client, addr = self.servidor.accept()
         threading.Thread(target= self.escuchar_cliente).start()
+  
     
     def GetIntruccionesRecibidas(self):
         aux = ""
