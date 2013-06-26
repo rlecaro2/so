@@ -27,8 +27,7 @@ class Servidor:
             client.close() 
 
     def enviar_mensajes(self, msj):
-
-        print("Ingrese la instruccion a envia en el formato establecido")
+        
         mensaje= msj
         self.socket.send(mensaje)
 
@@ -49,10 +48,8 @@ class Servidor:
         threading.Thread(target= self.escuchar_cliente).start()
     
     def GetIntruccionesRecibidas(self):
-        aux = ProcesosRecibidos
-        self.ProcesosRecibidos =[]
+        aux = ProcesosRecibidos.pop()
         return aux
-
 
 
     

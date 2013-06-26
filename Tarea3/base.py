@@ -566,9 +566,16 @@ def enviar_comando(mensaje):
         servidor.enviar_mensaje(mensaje)
 
 def realizar_llamada():
+
     mensaje = 'CALL01;41;1;0;2277567;-10'
     procesos.append(Llamada(mensaje))
     enviar_comando(mensaje) 
+
+    enviarmensaje = 'CALL01;41;1;0;2277567;-10'
+    recibirmensaje = 'CALL01;5;2;0;2277567;-10'
+    procesos.append(Llamada(enviarmensaje))
+    enviar_comando(recibirmensaje) 
+
 
 def terminar_llamada():
    
@@ -583,9 +590,10 @@ def terminar_llamada():
     enviar_comando(mensaje)
 
 def enviar_mensaje(mensaje):
-    mensaje = 'enviar_mensajes;14;3;2;00000000;'+mensaje
-    procesos.append(Mensaje(mensaje))
-    enviar_comando(mensaje)
+    enviarmensaje = 'enviar_mensajes;14;3;2;00000000;'+mensaje
+    recibirmensaje = 'recibir_mensajes;15;4;2;2277567;'+mensaje
+    procesos.append(Mensaje(enviarmensaje))
+    enviar_comando(recibirmensaje)
 
 def getInstruccion():
     ins = ""
@@ -616,7 +624,7 @@ p1 = Thread(target = simu.Simular)
 p1.start()
   
 cls()
-print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso"
+print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\n'conectar' -> se conecta con otra instancia\n'call01' -> comienza una llamada en esta instancia y otra conectada \n'call00' -> termina dicha llamada \n'men01' -> se usa para enviar un mensaje a otra instancia conectada \n'desconectar' -> se desconecta de otra instancia.\n"
 
 while(seguir): 
     orden = ""
@@ -644,6 +652,16 @@ while(seguir):
             conectado = True
         else:
             pass
+    elif(orden == "desconectar" and conectado):
+        enviar_comando("desconectar")
+        if servidor == None:
+            cliente.finalizarconexion()
+            cliente = None
+            conectado = False
+        else:
+            servidor.finalizarconexion()
+            servidor = None
+            conectado = False
 
     elif(conectado):
         if(orden == 'call01'):

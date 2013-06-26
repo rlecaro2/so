@@ -40,9 +40,6 @@ class Cliente:
         threading.Thread(target= self.recibir_mensaje).start()
 
     def GetIntruccionesRecibidas(self):
-        aux = ProcesosRecibidos
-        self.ProcesosRecibidos =[]
+        aux = ProcesosRecibidos.pop()
         return aux
-
-
    
