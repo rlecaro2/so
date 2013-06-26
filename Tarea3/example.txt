@@ -9,6 +9,3 @@ nuevo_contacto;16;5;6;Diego Alvarez;2277567
 angry_birds;17;9;8;60
 musica;18;10;8;30
 recibir_llamada;40;2;0;2277567;15
-
-
-enviar_mensaje;Fecha Ejecucion, Tipo Proceso, Prioridad Base, receptor, texto que se quiere enviar 

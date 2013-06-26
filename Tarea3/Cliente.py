@@ -19,7 +19,6 @@ class Cliente:
         self.socket.send("mensaje;" + mensaje)
 
     def recibir_mensaje(self):
-
         while True:
             msg = self.socket.recv(4096) # recibimos mensajes
             print("Instruccion recibida: "+ msg)  
@@ -40,6 +39,9 @@ class Cliente:
         threading.Thread(target= self.recibir_mensaje).start()
 
     def GetIntruccionesRecibidas(self):
-        aux = ProcesosRecibidos.pop()
+        aux = ""
+        try:
+            aux = self.ProcesosRecibidos.pop()
+        except:
+            pass
         return aux
-   

@@ -328,8 +328,8 @@ class Simulador:
             time.sleep(1)
             tiempo_ejecucion += 1
             #limpia la pantalla
-            cls()
-            print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\nTiempo actual:"+ str(tiempo_ejecucion)
+            """cls()
+            print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\n'conectar' -> se conecta con otra instancia\n'call01' -> comienza una llamada en esta instancia y otra conectada \n'call00' -> termina dicha llamada \n'men01' -> se usa para enviar un mensaje a otra instancia conectada \n'desconectar' -> se desconecta de otra instancia.\nTiempo actual:"+ str(tiempo_ejecucion)"""
             
     def updateReady(self):
         global disp
@@ -617,7 +617,8 @@ p1.start()
   
 cls()
 print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\n'conectar' -> se conecta con otra instancia\n'call01' -> comienza una llamada en esta instancia y otra conectada \n'call00' -> termina dicha llamada \n'men01' -> se usa para enviar un mensaje a otra instancia conectada \n'desconectar' -> se desconecta de otra instancia.\n"
-
+from Servidor import Servidor
+from Cliente import Cliente
 while(seguir): 
     orden = ""
     if(conectado):
@@ -635,12 +636,12 @@ while(seguir):
         else:
             top = True
     elif(orden == "conectar" and not conectado):
-        op = raw_input("Elige modo: \n [1] Servidor     \n [2] Cliente")
+        op = raw_input("Elige modo: \n [1] Servidor     \n [2] Cliente\n")
         if int(op) == 1:
-            servidor = Servidor(9000,'localhost',1).run()
+            servidor = Servidor(9000,'localhost',1)
             conectado = True
         elif int(op) == 2:
-            cliente = Cliente(9000,'localhost',1).run()
+            cliente = Cliente(9000,'localhost').run()
             conectado = True
         else:
             pass
