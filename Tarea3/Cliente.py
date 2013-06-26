@@ -12,7 +12,7 @@ class Cliente:
         self.ProcesosRecibidos = []
         
 
-    def enviar_mensajes(self, msj):
+    def enviar_mensaje(self, msj):
 
         ##Formato: enviar_mensaje;Fecha Ejecucion, Tipo Proceso, Prioridad Base,  receptor, texto que se quiere enviar 
         mensaje = msj

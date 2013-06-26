@@ -13,21 +13,19 @@ class Servidor(threading.Thread):
             self.servidor.bind((self.IP, self.puerto))
             self.servidor.listen(Num_connec)
             print("Esperando Conexiones ...\n")
-            self.client = self.servidor.accept()
-            self.run()
 
-        except socket.error:
-            print('Bind failed %s' % (socket.error))
+
+        except:
+            print('Bind failed')
             sys.exit()
 
 
     def escuchar_cliente(self):           
             while True:
-                data = self.client.recv(1024)
-                print("Instruccion recibida: "+ data)                     
+                data = self.client.recv(1024)                    
             client.close() 
 
-    def enviar_mensajes(self, msj):        
+    def enviar_mensaje(self, msj):        
         mensaje= msj
         self.client.send(mensaje)
 

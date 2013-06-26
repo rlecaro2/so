@@ -328,8 +328,8 @@ class Simulador:
             time.sleep(1)
             tiempo_ejecucion += 1
             #limpia la pantalla
-            """cls()
-            print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\n'conectar' -> se conecta con otra instancia\n'call01' -> comienza una llamada en esta instancia y otra conectada \n'call00' -> termina dicha llamada \n'men01' -> se usa para enviar un mensaje a otra instancia conectada \n'desconectar' -> se desconecta de otra instancia.\nTiempo actual:"+ str(tiempo_ejecucion)"""
+            cls()
+            print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\n'conectar' -> se conecta con otra instancia\n'call01' -> comienza una llamada en esta instancia y otra conectada \n'call00' -> termina dicha llamada \n'men01' -> se usa para enviar un mensaje a otra instancia conectada \n'desconectar' -> se desconecta de otra instancia.\nTiempo actual:"+ str(tiempo_ejecucion)
             
     def updateReady(self):
         global disp
@@ -556,18 +556,19 @@ global top
 
 llamando = False
 conectado = False
-servidor = None
-cliente = None
+servidor = 0
+cliente = 0
+es_cliente = False
 
 def enviar_comando(mensaje):
-    if servidor == None:
+    if es_cliente:
         cliente.enviar_mensaje(mensaje)
     else:
         servidor.enviar_mensaje(mensaje)
 
 def realizar_llamada():
-    enviarmensaje = 'CALL01;41;1;0;2277567;-10'
-    recibirmensaje = 'CALL01;5;2;0;2277567;-10'
+    enviarmensaje = 'CALL01;0;1;0;2277567;-10'
+    recibirmensaje = 'CALL01;0;2;0;2277567;-10'
     procesos.append(Llamada(enviarmensaje))
     enviar_comando(recibirmensaje) 
 
@@ -589,7 +590,7 @@ def enviar_mensaje(mensaje):
 
 def getInstruccion():
     ins = ""
-    if servidor == None:
+    if es_cliente:
         ins = cliente.GetIntruccionesRecibidas()
     else:
         ins = servidor.GetIntruccionesRecibidas()
@@ -639,18 +640,22 @@ while(seguir):
         op = raw_input("Elige modo: \n [1] Servidor     \n [2] Cliente\n")
         if int(op) == 1:
             servidor = Servidor(9000,'localhost',1)
+            servidor.run()
             conectado = True
         elif int(op) == 2:
-            cliente = Cliente(9000,'localhost').run()
+            cliente = Cliente(9000,'localhost')
+            cliente.run()
             conectado = True
+            es_cliente = True
         else:
             pass
     elif(orden == "desconectar" and conectado):
         enviar_comando("desconectar")
-        if servidor == None:
+        if es_cliente:
             cliente.finalizarconexion()
             cliente = None
             conectado = False
+            es_cliente = False
         else:
             servidor.finalizarconexion()
             servidor = None
