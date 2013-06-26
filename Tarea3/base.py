@@ -626,7 +626,7 @@ while(seguir):
             top = False
         else:
             top = True
-    elif(orden == "conectar" and !conectado):
+    elif(orden == "conectar" and not conectado):
         op = raw_input("Elige modo: \n [1] Servidor     \n [2] Cliente")
         if int(op) == 1:
             servidor = Servidor(9000,'localhost',1).start()
@@ -639,7 +639,7 @@ while(seguir):
 
     elif(conectado):
         if(orden == 'call01'):
-            if !(llamando):
+            if not(llamando):
                 llamando = True
                 realizar_llamada()
         elif(orden == 'call00'):
