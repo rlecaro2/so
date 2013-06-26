@@ -22,7 +22,7 @@ class Cliente:
         while True:
             msg = self.socket.recv(4096) # recibimos mensajes
             print("Instruccion recibida: "+ msg)  
-            ProcesosRecibidos.append(msg)
+            self.ProcesosRecibidos.append(msg)
     
     def llamar(self):
         pass
@@ -30,9 +30,8 @@ class Cliente:
     def terminarllamada(self):
         pass
 
-    def finalizarconexion():
+    def finalizarconexion(self):
         self.socket.close()
-        threading.Thread._Thread__stop()
 
     def run(self):
        

@@ -328,8 +328,9 @@ class Simulador:
             time.sleep(1)
             tiempo_ejecucion += 1
             #limpia la pantalla
-            cls()
-            print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\n'conectar' -> se conecta con otra instancia\n'call01' -> comienza una llamada en esta instancia y otra conectada \n'call00' -> termina dicha llamada \n'men01' -> se usa para enviar un mensaje a otra instancia conectada \n'desconectar' -> se desconecta de otra instancia.\nTiempo actual:"+ str(tiempo_ejecucion)
+            if(tiempo_ejecucion%10 == 0):
+                cls()
+                print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso\n'conectar' -> se conecta con otra instancia\n'call01' -> comienza una llamada en esta instancia y otra conectada \n'call00' -> termina dicha llamada \n'men01' -> se usa para enviar un mensaje a otra instancia conectada \n'desconectar' -> se desconecta de otra instancia.\nTiempo actual:"+ str(tiempo_ejecucion)
             
     def updateReady(self):
         global disp
@@ -629,6 +630,8 @@ while(seguir):
 
     if(orden == 'salir'):
         seguir = False
+        servidor.terminate()
+        cliente.terminate()
         #p1.terminate()
         break
     elif(orden == 'top'):

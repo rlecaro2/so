@@ -22,7 +22,9 @@ class Servidor(threading.Thread):
 
     def escuchar_cliente(self):           
             while True:
-                data = self.client.recv(1024)                    
+                data = self.client.recv(1024)
+                print("Instruccion recibida: "+ data) 
+                self.ProcesosRecibidos.append(data)                   
             client.close() 
 
     def enviar_mensaje(self, msj):        
@@ -30,9 +32,9 @@ class Servidor(threading.Thread):
         self.client.send(mensaje)
 
 
-    def finalizarconexion():
+    def finalizarconexion(self):
         self.servidor.close()
-        threading.Thread._Thread__stop()
+
         
     def run(self):
         self.client, addr = self.servidor.accept()
