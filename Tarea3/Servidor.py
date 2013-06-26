@@ -22,14 +22,14 @@ class Servidor(threading.Thread):
     def escuchar_cliente(self):
            
             while True:
-                data = client.recv(1024)
+                data = self.client.recv(1024)
                 print("Instruccion recibida: "+ data)                     
             client.close() 
 
     def enviar_mensajes(self, msj):
         
         mensaje= msj
-        self.socket.send(mensaje)
+        self.client.send(mensaje)
 
     def llamar(self):
         pass
@@ -42,11 +42,10 @@ class Servidor(threading.Thread):
         self.servidor.close()
         threading.Thread._Thread__stop()
         
-   
     def run(self):
-		
-		client, addr = self.servidor.accept()
+        self.client, addr = self.servidor.accept()
         threading.Thread(target= self.escuchar_cliente).start()
+  
     
     def GetIntruccionesRecibidas(self):
         aux = ProcesosRecibidos.pop()
