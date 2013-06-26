@@ -244,14 +244,15 @@ class Simulador:
             #v 2.3 ejecutar simulacion, haciendo que pase el tiempo en los procesos
             if (running != None):
                 for r in running:
-                    #print running.texto()
-                    r.decTiempo()
-                    #acá se graba en memoria cuando el proceso termina 
-                    if(r.getTiempo() <= 0):
-                        memoria.escribir_memoria(r)
-                        running.remove(r)
-                        self.updatePerifericos()
-                        cambioperif = True
+                  if(r.getTiempo != -10): 
+                        #print running.texto()
+                        r.decTiempo()
+                        #acá se graba en memoria cuando el proceso termina 
+                        if(r.getTiempo() <= 0):
+                            memoria.escribir_memoria(r)
+                            running.remove(r)
+                            self.updatePerifericos()
+                            cambioperif = True
                     
             #v 2.3 procesos que llegan al momento actual en la simulacion
             if(len(procesos) > 0 and procesos[0].fecha == tiempo_ejecucion):
