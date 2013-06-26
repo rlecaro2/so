@@ -570,13 +570,22 @@ def realizar_llamada():
     enviar_comando(mensaje) 
 
 def terminar_llamada():
-    pass
+    mensaje = "terminar_llamada"
+    #logica para matar llamada localmente, probablemente un metodo q se llama aca y alla
+    enviar_comando(mensaje)
 
 def enviar_mensaje(mensaje):
     mensaje = 'enviar_mensajes;14;3;2;00000000;'+mensaje
     procesos.append(Mensaje(mensaje))
     enviar_comando(mensaje)
 
+def getInstruccion():
+    ins = ""
+    if servidor == None:
+        ins = cliente.GetIntruccionesRecibidas()
+    else:
+        ins = servidor.GetIntruccionesRecibidas()
+    return ins
 
 tiempo_ejecucion = 0
 entrada = raw_input('Ingrese nombre del archivo de input (sin extension)\n')
@@ -602,9 +611,12 @@ cls()
 print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso"
 
 while(seguir): 
+    orden = ""
     if(conectado):
-           
-    orden = raw_input()
+        orden = getInstruccion()
+    if(orden == ""):
+        orden = raw_input()
+
     if(orden == 'salir'):
         seguir = False
         #p1.terminate()
@@ -618,11 +630,13 @@ while(seguir):
         op = raw_input("Elige modo: \n [1] Servidor     \n [2] Cliente")
         if int(op) == 1:
             servidor = Servidor(9000,'localhost',1).start()
+            conectado = True
         elif int(op) == 2:
             cliente = Cliente(9000,'localhost',1).start()
-        conectado = True
+            conectado = True
         else:
             pass
+
     elif(conectado):
         if(orden == 'call01'):
             if !(llamando):
@@ -648,6 +662,5 @@ while(seguir):
         elif (pu[2]=='5'):
             procesos.append(Agregar_Contacto(orden))
         else:
-            procesos.append(Varios(orden))
-    orden = ""     
+            procesos.append(Varios(orden))     
             

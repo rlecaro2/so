@@ -19,8 +19,7 @@ class Servidor:
             sys.exit()
 
 
-    def escuchar_cliente(self):
-           
+    def escuchar_cliente(self):           
             while True:
                 data = client.recv(1024)
                 print("Instruccion recibida: "+ data)                     
@@ -46,14 +45,12 @@ class Servidor:
         
    
     def run(self):
-
         threading.Thread(target= self.enviar_mensajes).start()
         threading.Thread(target= self.escuchar_cliente).start()
 
     
     def GetIntruccionesRecibidas(self):
-        aux = ProcesosRecibidos
-        self.ProcesosRecibidos =[]
+        aux = ProcesosRecibidos.pop()
         return aux
 
 
