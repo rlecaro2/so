@@ -8,6 +8,7 @@ class Servidor:
         self.puerto= port
         self.IP= ip
         self.servidor = socket(AF_INET,SOCK_STREAM)
+        self.ProcesosRecibidos = []
               
         try: 
             self.servidor.bind((self.IP, self.puerto))
@@ -25,11 +26,11 @@ class Servidor:
                 print("Instruccion recibida: "+ data)                     
             client.close() 
 
-    def enviar_mensajes(self):
+    def enviar_mensajes(self, msj):
 
         print("Ingrese la instruccion a envia en el formato establecido")
         while(True):
-            mensaje= raw_input()
+            mensaje= msj
             self.socket.send(mensaje)
 
     def llamar(self):
@@ -48,6 +49,14 @@ class Servidor:
 
         threading.Thread(target= self.enviar_mensajes).start()
         threading.Thread(target= self.escuchar_cliente).start()
+
+    
+    def GetIntruccionesRecibidas(self):
+        aux = ProcesosRecibidos
+        self.ProcesosRecibidos =[]
+        return aux
+
+
 
     
 
