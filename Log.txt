@@ -1,0 +1,8 @@
+2013-05-26 17:24:55 - Llamada recibida de: 2277567. Duracion: 15 segundo(s). 
+2013-05-26 17:25:05 - Llamada realizada a: 2277567. Duracion: 10 segundo(s). 
+2013-05-26 17:25:20 - Llamada recibida de: 2277567. Duracion: 15 segundo(s). 
+2013-05-26 17:25:35 - Llamada recibida de: 2277567. Duracion: 15 segundo(s). 
+2013-05-26 17:25:35 - Contacto agregado. Nombre: Diego Alvarez, numero: 2277567.2013-05-26 17:25:36 - Mensaje recibido de: 2277567, mensaje: "Alo?"
+2013-05-26 17:25:36 - Mensaje recibido de: 2277567, mensaje: "Bien y tu?"
+2013-05-26 17:25:37 - Mensaje recibido de: 2277567, mensaje: "Hola"
+2013-05-26 17:26:07 - Musica durante 30 segundos.2013-05-26 17:27:07 - Juego durante 60 segundos.

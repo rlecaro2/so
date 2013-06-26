@@ -89,6 +89,7 @@ class iOS:
   def Run(self):
     self.limpiarRunning()
     self.ready += (self.scheduler.Procesos_a_ejecutar(self.fecha)) #Entran a esperar los procesos que corresponda
+    self.ready = sorted(self.ready,cmp = helpers.sortByPriority)
 
     #self.waiting = sorted(self.waiting, cmp = helpers.sortByPriority)
 
