@@ -1,8 +1,8 @@
 ﻿from socket import socket, AF_INET, SOCK_STREAM 
 import  sys , threading
 
-class Cliente(object):
-   
+class Cliente:
+    
     def __init__(self, port, ip):
         
         self.IP = ip
@@ -11,20 +11,35 @@ class Cliente(object):
         self.socket.connect((self.IP, self.puerto))
         
 
-    def enviar_mensajes(self):
+    def enviar_mensajes(self, msj, fecha):
 
-        while(True):
-            mensaje= raw_input()
-            self.socket.send(mensaje)
+        ##Formato: enviar_mensaje;Fecha Ejecucion, Tipo Proceso, Prioridad Base,  receptor, texto que se quiere enviar 
+        print("Ingrese la instruccion a envia en el formato establecido")
+        while(True):           
+            mensaje = raw_input()
+            self.socket.send("mensaje;" + mensaje)
 
     def recibir_mensaje(self):
 
         while True:
             msg = self.socket.recv(4096) # recibimos mensajes
-            print msg
+            print("Instruccion recibida: "+ msg)  
+            return msg 
+    
+    def llamar(self):
+        pass
+
+    def terminarllamada(self):
+        pass
+
+    def finalizarconexion():
+        self.socket.close()
+        threading.Thread._Thread__stop()
 
     def run(self):
 
         threading.Thread(target= self.enviar_mensajes).start()
         threading.Thread(target= self.recibir_mensaje).start()
 
+
+   
