@@ -566,28 +566,20 @@ def enviar_comando(mensaje):
         servidor.enviar_mensaje(mensaje)
 
 def realizar_llamada():
-
-    mensaje = 'CALL01;41;1;0;2277567;-10'
-    procesos.append(Llamada(mensaje))
-    enviar_comando(mensaje) 
-
     enviarmensaje = 'CALL01;41;1;0;2277567;-10'
     recibirmensaje = 'CALL01;5;2;0;2277567;-10'
     procesos.append(Llamada(enviarmensaje))
     enviar_comando(recibirmensaje) 
 
 
-def terminar_llamada():
-   
+def terminar_llamada(local):   
     global running
-
-    mensaje = "terminar_llamada"
-    #logica para matar llamada localmente, probablemente un metodo q se llama aca y alla
     for r in running: 
         if(r.getNombre == "CALL01" ):
-            r.getTiempo=0
-
-    enviar_comando(mensaje)
+            r.getTiempo = 0
+    if local:        
+        mensaje = "terminar_llamada"
+        enviar_comando(mensaje)
 
 def enviar_mensaje(mensaje):
     enviarmensaje = 'enviar_mensajes;14;3;2;00000000;'+mensaje
@@ -645,10 +637,10 @@ while(seguir):
     elif(orden == "conectar" and not conectado):
         op = raw_input("Elige modo: \n [1] Servidor     \n [2] Cliente")
         if int(op) == 1:
-            servidor = Servidor(9000,'localhost',1).start()
+            servidor = Servidor(9000,'localhost',1).run()
             conectado = True
         elif int(op) == 2:
-            cliente = Cliente(9000,'localhost',1).start()
+            cliente = Cliente(9000,'localhost',1).run()
             conectado = True
         else:
             pass
@@ -671,10 +663,14 @@ while(seguir):
         elif(orden == 'call00'):
             if llamando:
                 llamando = False
-                terminar_llamada()
+                terminar_llamada(True)
         elif(orden == 'men01'):
             m = raw_input("Escribe el mensaje: ")
             enviar_mensaje(m)
+        elif(orden=="terminar_llamada"):
+            if llamando:
+                llamando = False
+                terminar_llamada(False)
     elif (orden == ""):
         pass
     else:
