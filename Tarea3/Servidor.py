@@ -1,7 +1,7 @@
 ﻿from socket import socket, AF_INET, SOCK_STREAM 
 import  sys , threading
 
-class Servidor:
+class Servidor(threading.Thread):
            
     def  __init__(self, port, ip, Num_connec):
         threading.Thread.__init__(self)
@@ -44,7 +44,8 @@ class Servidor:
         
    
     def run(self):
-
+		
+		client, addr = self.servidor.accept()
         threading.Thread(target= self.escuchar_cliente).start()
     
     def GetIntruccionesRecibidas(self):
