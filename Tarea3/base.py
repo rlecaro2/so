@@ -553,6 +553,31 @@ global top
 
 
 
+llamando = False
+conectado = False
+servidor = None
+cliente = None
+
+def enviar_comando(mensaje):
+    if servidor == None:
+        cliente.enviar_mensaje(mensaje)
+    else:
+        servidor.enviar_mensaje(mensaje)
+
+def realizar_llamada():
+    mensaje = 'CALL01;41;1;0;2277567;10'
+    procesos.append(Llamada(mensaje))
+    enviar_comando(mensaje) 
+
+def terminar_llamada():
+    pass
+
+def enviar_mensaje(mensaje):
+    mensaje = 'enviar_mensajes;14;3;2;00000000;'+mensaje
+    procesos.append(Mensaje(mensaje))
+    enviar_comando(mensaje)
+
+
 tiempo_ejecucion = 0
 entrada = raw_input('Ingrese nombre del archivo de input (sin extension)\n')
 i = Lector(entrada)
@@ -575,8 +600,10 @@ p1.start()
   
 cls()
 print "Comandos:\n'salir'-> detiene programa\n'top'-> ver procesos (2 veces deja de ver los procesos)\n'nombre_proc;tipo;opc1;opc2sihay'-> ingresa un nuevo proceso"
-while(seguir):
 
+while(seguir): 
+    if(conectado):
+           
     orden = raw_input()
     if(orden == 'salir'):
         seguir = False
@@ -587,6 +614,27 @@ while(seguir):
             top = False
         else:
             top = True
+    elif(orden == "conectar" and !conectado):
+        op = raw_input("Elige modo: \n [1] Servidor     \n [2] Cliente")
+        if int(op) == 1:
+            servidor = Servidor(9000,'localhost',1).start()
+        elif int(op) == 2:
+            cliente = Cliente(9000,'localhost',1).start()
+        conectado = True
+        else:
+            pass
+    elif(conectado):
+        if(orden == 'call01'):
+            if !(llamando):
+                llamando = True
+                realizar_llamada()
+        elif(orden == 'call00'):
+            if llamando:
+                llamando = False
+                terminar_llamada()
+        elif(orden == 'men01'):
+            m = raw_input("Escribe el mensaje: ")
+            enviar_mensaje(m)
     elif (orden == ""):
         pass
     else:
